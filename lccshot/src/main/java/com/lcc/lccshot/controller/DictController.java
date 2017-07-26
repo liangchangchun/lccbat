@@ -99,8 +99,8 @@ public class DictController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
        // List<Map<String, Object>> list = this.dictDao.list(condition);
-    	 List<Dict> list = this.dictDao.findByNameLike(condition);
-        return super.warpObject(new DictWarpper(list));
+    	 List<Dict> list = this.dictService.list(condition);
+        return new DictWarpper(list,Dict.class).warp();
     }
 
     /**

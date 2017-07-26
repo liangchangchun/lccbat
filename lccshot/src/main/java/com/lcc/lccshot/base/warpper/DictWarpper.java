@@ -16,11 +16,15 @@ import java.util.Map;
  */
 public class DictWarpper extends BaseControllerWarpper {
 
-    public DictWarpper(Object list) {
-        super(list);
-    }
+	 public DictWarpper(Object obj) {
+			super(obj);
+		}
 
-    @Override
+    public DictWarpper(Object obj, Class type) {
+		super(obj, type);
+	}
+
+	@Override
     public void warpTheMap(Map<String, Object> map) {
         StringBuffer detail = new StringBuffer();
         Integer id = (Integer) map.get("id");
@@ -29,7 +33,7 @@ public class DictWarpper extends BaseControllerWarpper {
             for (Dict dict : dicts) {
                 detail.append(dict.getNum() + ":" +dict.getName() + ",");
             }
-            map.put("detail", ToolUtil.removeSuffix(detail.toString(),","));
+            //map.put("detail", ToolUtil.removeSuffix(detail.toString(),","));
         }
     }
 

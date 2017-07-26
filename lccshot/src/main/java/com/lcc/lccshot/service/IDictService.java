@@ -2,6 +2,7 @@ package com.lcc.lccshot.service;
 
 import java.util.List;
 
+import com.lcc.lccshot.domain.Dict;
 import com.lcc.lccshot.domain.vo.ZTreeNode;
 
 /**
@@ -36,4 +37,5 @@ public interface IDictService {
      */
     void delteDict(Integer dictId);
 
+    List<Dict> list(String condition);
 }
