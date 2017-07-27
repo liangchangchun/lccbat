@@ -72,6 +72,7 @@ public class DictServiceImpl extends BaseServiceTemplate<DictRepository,Dict> im
         this.addDict(dictName,dicts);
     }
 
+    @Transactional
     @Override
     public void delteDict(Integer dictId) {
         //删除这个字典的子词典
@@ -81,6 +82,7 @@ public class DictServiceImpl extends BaseServiceTemplate<DictRepository,Dict> im
 
         //删除这个词典
     	repository.deleteByPId(dictId);
+    	repository.delete(dictId);
     }
 
 	@Override

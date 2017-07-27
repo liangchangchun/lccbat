@@ -17,9 +17,8 @@ import javax.persistence.Id;
 @Entity
 public class Dict implements Serializable{
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
+	private static final long serialVersionUID = -4773250600192270375L;
+	@Id
 	@GeneratedValue
 	private Integer id;
 	private Integer num;

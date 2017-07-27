@@ -33,7 +33,7 @@ public class DictWarpper extends BaseControllerWarpper {
             for (Dict dict : dicts) {
                 detail.append(dict.getNum() + ":" +dict.getName() + ",");
             }
-            //map.put("detail", ToolUtil.removeSuffix(detail.toString(),","));
+            map.put("detail", ToolUtil.removeSuffix(detail.toString(),","));
         }
     }
 

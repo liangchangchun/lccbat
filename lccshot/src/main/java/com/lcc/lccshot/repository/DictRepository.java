@@ -27,5 +27,5 @@ public interface DictRepository extends JpaRepository<Dict, Integer>,JpaSpecific
 	@Transactional
 	@Modifying
 	@Query("delete from Dict where pid = ?1")
-	Long deleteByPId(Integer dictId);
+	int deleteByPId(Integer dictId);
 }
