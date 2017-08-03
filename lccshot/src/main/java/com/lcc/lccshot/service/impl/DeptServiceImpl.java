@@ -2,6 +2,8 @@ package com.lcc.lccshot.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.lcc.lccshot.core.map2sql.BaseServiceTemplate;
 import com.lcc.lccshot.core.map2sql.Conditions;
 import com.lcc.lccshot.core.map2sql.Where;
@@ -9,6 +11,7 @@ import com.lcc.lccshot.domain.Dept;
 import com.lcc.lccshot.repository.DeptRepository;
 import com.lcc.lccshot.service.IDeptService;
 
+@Service
 public class DeptServiceImpl extends BaseServiceTemplate<DeptRepository,Dept> implements IDeptService{
 
 	@Override

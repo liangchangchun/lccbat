@@ -10,6 +10,7 @@ import com.lcc.lccshot.exception.BizExceptionEnum;
 import com.lcc.lccshot.exception.BussinessException;
 import com.lcc.lccshot.repository.DeptRepository;
 import com.lcc.lccshot.repository.MenuRepository;
+import com.lcc.lccshot.service.IDeptService;
 import com.lcc.lccshot.service.IDictService;
 import com.lcc.lccshot.service.IMenuService;
 import com.lcc.lccshot.domain.vo.ZTreeNode;
@@ -41,6 +42,9 @@ public class DeptController extends BaseController {
 
     @Resource
     DeptRepository deptDao;
+    
+    @Resource
+    IDeptService deptService;
     
     @Resource
     IMenuService menuService;
@@ -107,8 +111,8 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(String condition) {
-        List<Dept> list = this.deptDao.listDept(condition);
-        return super.warpObject(new DeptWarpper(list));
+        List<Dept> list = this.deptService.listDept(condition);
+        return super.warpObject(new DeptWarpper(list,Dept.class));
     }
 
     /**

@@ -17,6 +17,9 @@ public class DeptWarpper extends BaseControllerWarpper {
     public DeptWarpper(Object list) {
         super(list);
     }
+    public DeptWarpper(Object list,Class c) {
+        super(list,c);
+    }
 
     @Override
     public void warpTheMap(Map<String, Object> map) {
