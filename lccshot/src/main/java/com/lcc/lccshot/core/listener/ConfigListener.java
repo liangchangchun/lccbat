@@ -7,9 +7,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.google.common.collect.Maps;
+
 public class ConfigListener implements ServletContextListener {
 
-    private static Map<String, String> conf = new HashMap<>();
+    private static Map<String, String> conf = Maps.newHashMap();
 
     public static Map<String, String> getConf() {
         return conf;

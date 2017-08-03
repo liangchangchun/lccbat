@@ -18,6 +18,8 @@ package com.lcc.lccshot.utils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.google.common.collect.Maps;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
@@ -41,7 +43,7 @@ public class HttpKit {
      * 获取所有请求的值
      */
     public static Map<String, String> getRequestParameters() {
-        HashMap<String, String> values = new HashMap<>();
+        HashMap<String, String> values = Maps.newHashMap();
         HttpServletRequest request = HttpKit.getRequest();
         Enumeration enums = request.getParameterNames();
         while ( enums.hasMoreElements()){

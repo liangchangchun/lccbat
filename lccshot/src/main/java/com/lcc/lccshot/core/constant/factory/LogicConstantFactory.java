@@ -248,7 +248,7 @@ public class LogicConstantFactory implements IConstantFactory {
         if (ToolUtil.isEmpty(id)) {
             return null;
         } else {
-            EntityWrapper<Dict> wrapper = new EntityWrapper<>();
+            EntityWrapper<Dict> wrapper = new EntityWrapper<Dict>();
            // List<Dict> dicts = dictMapper.selectList(wrapper.eq("pid", id));
             List<Dict> dicts =  dictMapper.findByPid(id);
             if (dicts == null || dicts.size() == 0) {

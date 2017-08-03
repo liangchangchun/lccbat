@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.google.common.collect.Maps;
 import com.lcc.lccshot.config.properties.BaseProperties;
 
 public class ToolUtil {
@@ -418,7 +419,7 @@ public class ToolUtil {
      * @return Map<String,Object>
      */
     public static Map<String, Object> caseInsensitiveMap(Map<String, Object> map) {
-        Map<String, Object> tempMap = new HashMap<>();
+        Map<String, Object> tempMap = Maps.newHashMap();
         for (String key : map.keySet()) {
             tempMap.put(key.toLowerCase(), map.get(key));
         }

@@ -3,6 +3,8 @@ package com.lcc.lccshot.base.template.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 /**
  * 控制器模板生成的配置
  *
@@ -20,7 +22,7 @@ public class ControllerConfig {
     }
 
     private void init(){
-        ArrayList<String> imports = new ArrayList<>();
+        ArrayList<String> imports = Lists.newArrayList();
         imports.add("com.stylefeng.guns.common.controller.BaseController");
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");

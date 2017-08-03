@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.lcc.lccshot.utils.StrKit;
 import com.lcc.lccshot.utils.ToolUtil;
 
@@ -49,13 +51,13 @@ public class MutiStrFactory {
      */
     public static List<Map<String,String>> parseKeyValue(String mutiString){
         if(ToolUtil.isEmpty(mutiString)){
-            return new ArrayList<>();
+            return Lists.newArrayList();
         }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
+            ArrayList<Map<String,String>> results = Lists.newArrayList();
             String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
-                HashMap<String, String> itemMap = new HashMap<>();
+                HashMap<String, String> itemMap = Maps.newHashMap();
                 itemMap.put(MUTI_STR_KEY,attrs[0]);
                 itemMap.put(MUTI_STR_VALUE,attrs[1]);
                 results.add(itemMap);
@@ -72,13 +74,13 @@ public class MutiStrFactory {
      */
     public static List<Map<String,String>> parseIdKeyValue(String mutiString){
         if(ToolUtil.isEmpty(mutiString)){
-            return new ArrayList<>();
+            return Lists.newArrayList();
         }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
+            ArrayList<Map<String,String>> results = Lists.newArrayList();
             String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
-                HashMap<String, String> itemMap = new HashMap<>();
+                HashMap<String, String> itemMap = Maps.newHashMap();
                 itemMap.put(MUTI_STR_ID,attrs[0]);
                 itemMap.put(MUTI_STR_KEY,attrs[1]);
                 itemMap.put(MUTI_STR_VALUE,attrs[2]);

@@ -2,6 +2,8 @@ package com.lcc.lccshot.core.dictmap.base;
 
 import java.util.HashMap;
 
+import com.google.common.collect.Maps;
+
 /**
  * 字典映射抽象类
  *
@@ -10,8 +12,8 @@ import java.util.HashMap;
  */
 public abstract class AbstractDictMap {
 
-    protected HashMap<String, String> dictory = new HashMap<>();
-    protected HashMap<String, String> fieldWarpperDictory = new HashMap<>();
+    protected HashMap<String, String> dictory = Maps.newHashMap();
+    protected HashMap<String, String> fieldWarpperDictory = Maps.newHashMap();
 
     public AbstractDictMap(){
         put("id","主键id");
