@@ -64,6 +64,10 @@ public class BaseController {
         return new PageInfoBT<T>(page);
     }
     
+    protected <T> PageInfoBT<T> packForBT(org.springframework.data.domain.Page<T> page) {
+        return new PageInfoBT<T>(page);
+    }
+    
     protected <T> PageInfoBT<T> packForBT(List<T> result) {
         return new PageInfoBT<T>(result);
     }

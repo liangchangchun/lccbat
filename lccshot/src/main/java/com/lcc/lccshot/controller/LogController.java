@@ -4,15 +4,20 @@ import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.lcc.lccshot.core.annotion.Permission;
 import com.lcc.lccshot.core.annotion.log.BussinessLog;
 import com.lcc.lccshot.core.constant.Const;
+import com.lcc.lccshot.core.constant.factory.LogicConstantFactory;
 import com.lcc.lccshot.core.constant.factory.PageFactory;
 import com.lcc.lccshot.core.constant.state.BizLogType;
 import com.lcc.lccshot.base.BaseController;
 import com.lcc.lccshot.base.warpper.LogWarpper;
 import com.lcc.lccshot.utils.BeanKit;
+import com.lcc.lccshot.utils.Contrast;
+import com.lcc.lccshot.utils.Convert;
+import com.lcc.lccshot.utils.ToolUtil;
 import com.lcc.lccshot.domain.OperationLog;
 import com.lcc.lccshot.repository.OperationLogRepository;
 import com.lcc.lccshot.service.ILogService;
 
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -63,7 +68,6 @@ public class LogController extends BaseController {
     public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName, @RequestParam(required = false) Integer logType) {
     	Pageable pageable = new PageFactory().simplePage();
     	Page<OperationLog> result = operationLogService.getOperationLogs(beginTime, endTime,logName,BizLogType.valueOf(logType),pageable);
-    	
     	//Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
         //Sort sort = new Sort(Direction.DESC, page.getOrderByField());
        // Pageable pageable = new PageRequest(page.getCurrent(), page.getSize(), sort);
@@ -71,7 +75,7 @@ public class LogController extends BaseController {
        // List<OperationLog> result = operationLogDao.getOperationLogs(beginTime, endTime,logName,BizLogType.valueOf(logType),pageable);
        // page.setRecords((List<OperationLog>) new LogWarpper(result).warp());
       //  return super.packForBT(page);
-        return result;
+    	return super.packForBT(new LogWarpper(result,OperationLog.class).page());
     }
 
     /**

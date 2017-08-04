@@ -26,6 +26,11 @@ public class PageInfoBT<T> {
         this.total = page.getTotal();
     }
     
+    public PageInfoBT(org.springframework.data.domain.Page<T> page) {
+        this.rows = page.getContent();
+        this.total = page.getTotalPages();
+    }
+    
     public PageInfoBT(List<T> result) {
         this.rows = result;
         this.total = result.size();

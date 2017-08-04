@@ -1,11 +1,14 @@
 package com.lcc.lccshot.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.text.NumberFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import com.lcc.lccshot.exception.ToolBoxException;
@@ -1061,4 +1064,25 @@ public class Convert {
 		return head + s.replaceAll("(零.)*零元", "元").replaceFirst("(零.)+", "").replaceAll("(零.)+", "零").replaceAll("^整$", "零元整");
 	}
 	
+	/**
+	 * 实体类 转 map
+	 * @param entity
+	 * @param type
+	 * @return
+	 */
+	public static Map toMap(Object entity,Class type){
+		Field[] fields =  type.getDeclaredFields();
+    	Map<String,Object> map = new HashMap<String,Object>();
+    	try {
+    	for (Field field : fields) {    
+            	field.setAccessible(true);  
+				map.put(field.getName(), field.get(entity));
+        	}    
+    	} catch (IllegalArgumentException e) {
+    		
+		} catch (IllegalAccessException e) {
+			
+		} 
+    	return map;
+	}
 }

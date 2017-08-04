@@ -15,11 +15,15 @@ import com.lcc.lccshot.utils.ToolUtil;
  */
 public class LogWarpper extends BaseControllerWarpper {
 
-    public LogWarpper(Object list) {
-        super(list);
-    }
+    public LogWarpper(Object obj) {
+		super(obj);
+	}
 
-    @Override
+    public LogWarpper(Object obj, Class type) {
+		super(obj, type);
+	}
+
+	@Override
     public void warpTheMap(Map<String, Object> map) {
         String message = (String) map.get("message");
 

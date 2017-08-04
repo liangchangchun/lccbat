@@ -6,6 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.assertj.core.util.Lists;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.data.domain.Page;
+
+import com.lcc.lccshot.core.constant.factory.LogicConstantFactory;
+import com.lcc.lccshot.domain.OperationLog;
+import com.lcc.lccshot.utils.Contrast;
+import com.lcc.lccshot.utils.Convert;
+import com.lcc.lccshot.utils.ToolUtil;
 
 /**
  * 控制器查询结果的包装类基类
@@ -47,6 +55,24 @@ public abstract class BaseControllerWarpper {
         } else {
             return this.obj;
         }
+    }
+    /**
+     * page行对象 转换
+     * @return
+     */
+    public Page page(){
+    	if (this.obj instanceof Page) {
+    		Page result =(Page)this.obj;
+    		Page<Map> res =result.map(new Converter<Object, Map>() {
+			@Override
+			public Map convert(Object source) {
+				return warpTheEntity(source);
+				}
+			});
+    		return res;
+    	} else {
+    		return (Page)this.obj;
+    	}
     }
 
     protected abstract void warpTheMap(Map<String, Object> map);
