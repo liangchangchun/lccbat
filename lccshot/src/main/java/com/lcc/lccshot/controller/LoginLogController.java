@@ -1,35 +1,26 @@
 package com.lcc.lccshot.controller;
 
-import com.baomidou.mybatisplus.mapper.SqlRunner;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
-import com.lcc.lccshot.core.annotion.Permission;
-import com.lcc.lccshot.core.annotion.log.BussinessLog;
-import com.lcc.lccshot.core.constant.Const;
-import com.lcc.lccshot.core.constant.factory.LogicConstantFactory;
-import com.lcc.lccshot.core.constant.factory.PageFactory;
-import com.lcc.lccshot.base.BaseController;
-import com.lcc.lccshot.base.warpper.LogWarpper;
-import com.lcc.lccshot.repository.LoginLogRepository;
-import com.lcc.lccshot.service.ILoginLogService;
-import com.lcc.lccshot.domain.LoginLog;
-import com.lcc.lccshot.domain.OperationLog;
+import java.util.Collection;
+import java.util.List;
 
-import org.springframework.data.domain.PageRequest;
+import javax.annotation.Resource;
+
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
+import com.lcc.lccshot.base.BaseController;
+import com.lcc.lccshot.core.annotion.Permission;
+import com.lcc.lccshot.core.annotion.log.BussinessLog;
+import com.lcc.lccshot.core.constant.Const;
+import com.lcc.lccshot.core.constant.factory.LogicConstantFactory;
+import com.lcc.lccshot.core.constant.factory.PageFactory;
+import com.lcc.lccshot.domain.LoginLog;
+import com.lcc.lccshot.service.ILoginLogService;
 
 /**
  * 日志管理的控制器

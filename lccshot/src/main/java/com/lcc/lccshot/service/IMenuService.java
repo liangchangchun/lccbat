@@ -2,6 +2,7 @@ package com.lcc.lccshot.service;
 
 import java.util.List;
 
+import com.lcc.lccshot.domain.Menu;
 import com.lcc.lccshot.domain.vo.MenuNode;
 import com.lcc.lccshot.domain.vo.ZTreeNode;
 
@@ -19,7 +20,9 @@ public interface IMenuService {
 	
 	List<ZTreeNode> menuTreeListByMenuIds(List<Integer> menuIds);
 	
-	public List<ZTreeNode> tree();
+	List<ZTreeNode> tree();
+	
+	List<Menu> selectMenus(String menuName,String level);
 	 /**
     * 删除菜单
     *

@@ -1,7 +1,6 @@
 package com.lcc.lccshot.controller;
 
 import com.baomidou.mybatisplus.mapper.SqlRunner;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.lcc.lccshot.core.annotion.Permission;
 import com.lcc.lccshot.core.annotion.log.BussinessLog;
 import com.lcc.lccshot.core.constant.Const;
@@ -12,7 +11,9 @@ import com.lcc.lccshot.base.warpper.LogWarpper;
 import com.lcc.lccshot.utils.BeanKit;
 import com.lcc.lccshot.domain.OperationLog;
 import com.lcc.lccshot.repository.OperationLogRepository;
+import com.lcc.lccshot.service.ILogService;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -41,6 +42,9 @@ public class LogController extends BaseController {
 
     @Resource
     private OperationLogRepository operationLogDao;
+    
+    @Resource
+    private ILogService operationLogService;
 
     /**
      * 跳转到日志管理的首页
@@ -57,14 +61,17 @@ public class LogController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName, @RequestParam(required = false) Integer logType) {
-        //Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
+    	Pageable pageable = new PageFactory().simplePage();
+    	Page<OperationLog> result = operationLogService.getOperationLogs(beginTime, endTime,logName,BizLogType.valueOf(logType),pageable);
+    	
+    	//Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
         //Sort sort = new Sort(Direction.DESC, page.getOrderByField());
        // Pageable pageable = new PageRequest(page.getCurrent(), page.getSize(), sort);
        // List<Map<String, Object>> result = logDao.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType), page.getOrderByField(), page.isAsc());
        // List<OperationLog> result = operationLogDao.getOperationLogs(beginTime, endTime,logName,BizLogType.valueOf(logType),pageable);
        // page.setRecords((List<OperationLog>) new LogWarpper(result).warp());
       //  return super.packForBT(page);
-        return null;
+        return result;
     }
 
     /**

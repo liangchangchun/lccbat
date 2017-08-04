@@ -1,19 +1,9 @@
 package com.lcc.lccshot.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.lcc.lccshot.core.annotion.Permission;
-import com.lcc.lccshot.core.annotion.log.BussinessLog;
-import com.lcc.lccshot.core.constant.Const;
-import com.lcc.lccshot.core.constant.factory.LogicConstantFactory;
-import com.lcc.lccshot.base.BaseController;
-import com.lcc.lccshot.base.warpper.DictWarpper;
-import com.lcc.lccshot.exception.BizExceptionEnum;
-import com.lcc.lccshot.exception.BussinessException;
-import com.lcc.lccshot.repository.DictRepository;
-import com.lcc.lccshot.service.IDictService;
-import com.lcc.lccshot.core.log.LogObjectHolder;
-import com.lcc.lccshot.utils.ToolUtil;
-import com.lcc.lccshot.domain.Dict;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
+import com.lcc.lccshot.base.BaseController;
+import com.lcc.lccshot.base.warpper.DictWarpper;
+import com.lcc.lccshot.core.annotion.Permission;
+import com.lcc.lccshot.core.annotion.log.BussinessLog;
+import com.lcc.lccshot.core.constant.Const;
+import com.lcc.lccshot.core.constant.factory.LogicConstantFactory;
+import com.lcc.lccshot.core.log.LogObjectHolder;
+import com.lcc.lccshot.domain.Dict;
+import com.lcc.lccshot.exception.BizExceptionEnum;
+import com.lcc.lccshot.exception.BussinessException;
+import com.lcc.lccshot.repository.DictRepository;
+import com.lcc.lccshot.service.IDictService;
+import com.lcc.lccshot.utils.ToolUtil;
 
 /**
  * 字典控制器

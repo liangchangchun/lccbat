@@ -6,19 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
+import com.lcc.lccshot.core.map2sql.BaseServiceTemplate;
+import com.lcc.lccshot.core.map2sql.Conditions;
+import com.lcc.lccshot.core.map2sql.Where;
+import com.lcc.lccshot.domain.Menu;
+import com.lcc.lccshot.domain.User;
 import com.lcc.lccshot.domain.view.MenuView;
 import com.lcc.lccshot.domain.view.ZTreeView;
 import com.lcc.lccshot.domain.vo.MenuNode;
 import com.lcc.lccshot.domain.vo.ZTreeNode;
 import com.lcc.lccshot.repository.MenuRepository;
 import com.lcc.lccshot.repository.RelationRepository;
+import com.lcc.lccshot.repository.UserRepository;
 import com.lcc.lccshot.service.IMenuService;
 
 @Service
-public class MenuServiceImpl implements IMenuService{
+public class MenuServiceImpl extends BaseServiceTemplate<MenuRepository,Menu> implements IMenuService{
 
-	@Autowired
-	MenuRepository menuDao;
 	
 	@Autowired
 	RelationRepository relationDao;
@@ -27,7 +31,7 @@ public class MenuServiceImpl implements IMenuService{
     public void delMenu(Integer menuId) {
 
         //删除菜单
-        this.menuDao.delete(menuId);
+        this.repository.delete(menuId);
 
         //删除关联的relation
         this.relationDao.deleteByMenuId(menuId);
@@ -38,7 +42,7 @@ public class MenuServiceImpl implements IMenuService{
 	@Override
 	public List<MenuNode> getMenusByRoleIds(List<Integer> roleList) {
 		List<MenuNode> menuNode =Lists.newArrayList();
-		List<MenuView> views = menuDao.findViewByRoleIds(roleList);
+		List<MenuView> views = repository.findViewByRoleIds(roleList);
 		for (MenuView view : views) {
 			MenuNode node =new MenuNode(view);
 			menuNode.add(node);
@@ -60,7 +64,7 @@ public class MenuServiceImpl implements IMenuService{
 	@Override
 	public List<ZTreeNode> tree() {
 		List<ZTreeNode> ztreeNode =Lists.newArrayList();
-		List<ZTreeView> views = menuDao.tree();
+		List<ZTreeView> views = repository.tree();
 		for (ZTreeView view : views) {
 			ZTreeNode node =new ZTreeNode(view);
 			ztreeNode.add(node);
@@ -72,10 +76,26 @@ public class MenuServiceImpl implements IMenuService{
 
 	@Override
 	public List<ZTreeNode> menuTreeList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ZTreeNode> ztreeNode =Lists.newArrayList();
+		List<ZTreeView> views = repository.menuTreeList();
+		for (ZTreeView view : views) {
+			ZTreeNode node =new ZTreeNode(view);
+			ztreeNode.add(node);
+		}
+				
+		return ztreeNode;
 	}
 
+	@Override
+	public List<Menu> selectMenus(String menuName,String level){
+		Where where = Where.create()
+				//.add(Conditions.create().and().eq("status", 1))
+				.add(Conditions.create().or().like("name", menuName))
+				.add(Conditions.create().or().like("code", menuName))
+				.add(Conditions.create().and().eq("levels", level));
+		this.initWhere(where);
+		return this.findAll();
+	}
 
 
 	@Override

@@ -16,11 +16,13 @@ import com.lcc.lccshot.domain.Menu;
  */
 public class MenuWarpper extends BaseControllerWarpper {
 
-    public MenuWarpper(List<Menu> list) {
-        super(list);
-    }
+  
 
-    @Override
+    public MenuWarpper(Object obj, Class type) {
+		super(obj, type);
+	}
+
+	@Override
     public void warpTheMap(Map<String, Object> map) {
         map.put("statusName", LogicConstantFactory.me().getMenuStatusName((Integer) map.get("status")));
         map.put("isMenuName", IsMenu.valueOf((Integer) map.get("ismenu")));

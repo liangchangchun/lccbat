@@ -45,7 +45,7 @@ MenuInfoDlg.close = function () {
  * 收集数据
  */
 MenuInfoDlg.collectData = function () {
-    this.set('id').set('name').set('code').set('pcode').set('url').set('num').set('levels').set('icon').set("ismenu");
+    this.set('id').set('name').set('code').set('pcode').set('url').set('num').set('levels').set('icon').set("ismenu").set("status");
 }
 
 /**
@@ -112,4 +112,5 @@ $(function () {
 
     //初始化是否是菜单
     $("#ismenu").val($("#ismenuValue").val());
+    $("#status").val($("#statusValue").val());
 });

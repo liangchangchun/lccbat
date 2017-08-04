@@ -123,8 +123,8 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String menuName, @RequestParam(required = false) String level) {
-        List<Menu> menus = this.menuDao.selectMenus(menuName, level);
-        return super.warpObject(new MenuWarpper(menus));
+        List<Menu> menus = this.menuService.selectMenus(menuName, level);
+        return super.warpObject(new MenuWarpper(menus,Menu.class));
     }
 
     /**
@@ -223,8 +223,8 @@ public class MenuController extends BaseController {
             menu.setPcode("0");
             menu.setLevels(1);
         }else{
-           // int code = Integer.parseInt(menu.getPcode());
-            Menu pMenu = menuDao.findByCode(menu.getPcode());
+            int code = Integer.parseInt(menu.getPcode());
+            Menu pMenu = menuDao.findById(code);
             Integer pLevels = pMenu.getLevels();
             menu.setPcode(pMenu.getCode());
             menu.setLevels(pLevels + 1);

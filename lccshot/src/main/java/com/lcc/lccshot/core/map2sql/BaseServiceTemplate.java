@@ -8,6 +8,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -45,6 +48,29 @@ public abstract class BaseServiceTemplate<M extends JpaSpecificationExecutor<T>,
         };  
 		return repository.findAll(specification);
 	}
+	
+	public Page<T> findAll(Pageable pageable){
+		Specification<T> specification = new Specification<T>() {  
+            @Override  
+            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {  
+            	List<Predicate> predicates = board.conditionHandler(root,query,cb,where);  
+                return query.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
+            }  
+        };  
+		return repository.findAll(specification,pageable);
+	}
+	
+	public List<T> findAll(Sort sort){
+		Specification<T> specification = new Specification<T>() {  
+            @Override  
+            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {  
+            	List<Predicate> predicates = board.conditionHandler(root,query,cb,where);  
+                return query.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
+            }  
+        };  
+		return (List<T>) repository.findAll(specification,sort);
+	}
+	
 	
 	public void initWhere(Where where){
 		this.where = where;
