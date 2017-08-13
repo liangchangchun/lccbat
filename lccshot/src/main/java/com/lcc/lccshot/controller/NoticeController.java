@@ -68,6 +68,7 @@ public class NoticeController extends BaseController {
     public String noticeUpdate(@PathVariable Integer noticeId, Model model) {
         Notice notice = noticeDao.findById(noticeId);
         model.addAttribute("notice",notice);
+        LogObjectHolder.me().set(notice);
         return PREFIX + "notice_edit.html";
     }
 
