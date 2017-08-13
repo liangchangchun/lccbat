@@ -13,11 +13,12 @@ import com.lcc.lccshot.core.constant.factory.LogicConstantFactory;
  */
 public class NoticeWrapper extends BaseControllerWarpper {
 
-    public NoticeWrapper(Object list) {
-        super(list);
-    }
 
-    @Override
+    public NoticeWrapper(Object obj, Class type) {
+		super(obj, type);
+	}
+
+	@Override
     public void warpTheMap(Map<String, Object> map) {
         Integer creater = (Integer) map.get("creater");
         map.put("createrName", LogicConstantFactory.me().getUserNameById(creater));

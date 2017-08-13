@@ -8,6 +8,7 @@ import com.lcc.lccshot.base.warpper.NoticeWrapper;
 import com.lcc.lccshot.exception.BizExceptionEnum;
 import com.lcc.lccshot.exception.BussinessException;
 import com.lcc.lccshot.repository.NoticeRepository;
+import com.lcc.lccshot.service.INoticeService;
 import com.lcc.lccshot.core.log.LogObjectHolder;
 import com.lcc.lccshot.core.shiro.ShiroKit;
 import com.lcc.lccshot.utils.ToolUtil;
@@ -40,6 +41,9 @@ public class NoticeController extends BaseController {
 
     @Autowired
     private NoticeRepository noticeDao;
+    
+    @Autowired
+    private INoticeService noticeService;
 
     /**
      * 跳转到通知列表首页
@@ -84,8 +88,8 @@ public class NoticeController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        List<Notice> list = this.noticeDao.list(condition);
-        return super.warpObject(new NoticeWrapper(list));
+        List<Notice> list = this.noticeService.list(condition);
+        return super.warpObject(new NoticeWrapper(list,Notice.class));
     }
 
     /**
