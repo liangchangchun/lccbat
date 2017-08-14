@@ -1,22 +1,14 @@
 /*
-Navicat MySQL Data Transfer
-
-Source Server         : 本地
-Source Server Version : 50621
-Source Host           : localhost:3306
-Source Database       : guns
-
-Target Server Type    : MYSQL
-Target Server Version : 50621
-File Encoding         : 65001
-
-Date: 2017-07-11 22:39:28
+MySQL Backup
+Source Server Version: 5.7.19
+Source Database: test
+Date: 2017/8/14 18:23:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for dept
+--  Table structure for `dept`
 -- ----------------------------
 DROP TABLE IF EXISTS `dept`;
 CREATE TABLE `dept` (
@@ -32,15 +24,7 @@ CREATE TABLE `dept` (
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='部门表';
 
 -- ----------------------------
--- Records of dept
--- ----------------------------
-INSERT INTO `dept` VALUES ('24', '1', '0', '[0],', '总公司', '总公司', '', null);
-INSERT INTO `dept` VALUES ('25', '2', '24', '[0],[24],', '开发部', '开发部', '', null);
-INSERT INTO `dept` VALUES ('26', '3', '24', '[0],[24],', '运营部', '运营部', '', null);
-INSERT INTO `dept` VALUES ('27', '4', '24', '[0],[24],', '战略部', '战略部', '', null);
-
--- ----------------------------
--- Table structure for dict
+--  Table structure for `dict`
 -- ----------------------------
 DROP TABLE IF EXISTS `dict`;
 CREATE TABLE `dict` (
@@ -53,21 +37,39 @@ CREATE TABLE `dict` (
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='字典表';
 
 -- ----------------------------
--- Records of dict
+--  Table structure for `fast_project`
 -- ----------------------------
-INSERT INTO `dict` VALUES ('16', '0', '0', '状态', null);
-INSERT INTO `dict` VALUES ('17', '1', '16', '启用', null);
-INSERT INTO `dict` VALUES ('18', '2', '16', '禁用', null);
-INSERT INTO `dict` VALUES ('29', '0', '0', '性别', null);
-INSERT INTO `dict` VALUES ('30', '1', '29', '男', null);
-INSERT INTO `dict` VALUES ('31', '2', '29', '女', null);
-INSERT INTO `dict` VALUES ('35', '0', '0', '账号状态', null);
-INSERT INTO `dict` VALUES ('36', '1', '35', '启用', null);
-INSERT INTO `dict` VALUES ('37', '2', '35', '冻结', null);
-INSERT INTO `dict` VALUES ('38', '3', '35', '已删除', null);
+DROP TABLE IF EXISTS `fast_project`;
+CREATE TABLE `fast_project` (
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for login_log
+--  Table structure for `fast_table`
+-- ----------------------------
+DROP TABLE IF EXISTS `fast_table`;
+CREATE TABLE `fast_table` (
+  `table_id` int(11) NOT NULL AUTO_INCREMENT,
+  `column_type` varchar(255) DEFAULT NULL,
+  `columns` varchar(255) DEFAULT NULL,
+  `table_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`table_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `girl`
+-- ----------------------------
+DROP TABLE IF EXISTS `girl`;
+CREATE TABLE `girl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `age` int(11) DEFAULT NULL,
+  `cup_size` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `login_log`
 -- ----------------------------
 DROP TABLE IF EXISTS `login_log`;
 CREATE TABLE `login_log` (
@@ -79,18 +81,10 @@ CREATE TABLE `login_log` (
   `message` text COMMENT '具体消息',
   `ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='登录记录';
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8 COMMENT='登录记录';
 
 -- ----------------------------
--- Records of login_log
--- ----------------------------
-INSERT INTO `login_log` VALUES ('126', '退出日志', '1', '2017-06-04 10:21:55', '成功', null, '127.0.0.1');
-INSERT INTO `login_log` VALUES ('127', '登录日志', '1', '2017-06-04 10:21:59', '成功', null, '127.0.0.1');
-INSERT INTO `login_log` VALUES ('128', '退出日志', '1', '2017-06-04 10:22:59', '成功', null, '127.0.0.1');
-INSERT INTO `login_log` VALUES ('129', '登录日志', '1', '2017-06-04 10:23:01', '成功', null, '127.0.0.1');
-
--- ----------------------------
--- Table structure for menu
+--  Table structure for `menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
@@ -108,69 +102,10 @@ CREATE TABLE `menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
--- Records of menu
--- ----------------------------
-INSERT INTO `menu` VALUES ('105', 'system', '0', '[0],', '系统管理', 'fa-user', '', '3', '1', '1', null, '1', '1');
-INSERT INTO `menu` VALUES ('106', 'mgr', 'system', '[0],[system],', '用户管理', '', '/mgr', '1', '2', '1', null, '1', '0');
-INSERT INTO `menu` VALUES ('107', 'mgr_add', 'mgr', '[0],[system],[mgr],', '添加用户', null, '/mgr/add', '1', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('108', 'mgr_edit', 'mgr', '[0],[system],[mgr],', '修改用户', null, '/mgr/edit', '2', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('109', 'mgr_delete', 'mgr', '[0],[system],[mgr],', '删除用户', null, '/mgr/delete', '3', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('110', 'mgr_reset', 'mgr', '[0],[system],[mgr],', '重置密码', null, '/mgr/reset', '4', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('111', 'mgr_freeze', 'mgr', '[0],[system],[mgr],', '冻结用户', null, '/mgr/freeze', '5', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('112', 'mgr_unfreeze', 'mgr', '[0],[system],[mgr],', '解除冻结用户', null, '/mgr/unfreeze', '6', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('113', 'mgr_setRole', 'mgr', '[0],[system],[mgr],', '分配角色', null, '/mgr/setRole', '7', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('114', 'role', 'system', '[0],[system],', '角色管理', null, '/role', '2', '2', '1', null, '1', '0');
-INSERT INTO `menu` VALUES ('115', 'role_add', 'role', '[0],[system],[role],', '添加角色', null, '/role/add', '1', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('116', 'role_edit', 'role', '[0],[system],[role],', '修改角色', null, '/role/edit', '2', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('117', 'role_remove', 'role', '[0],[system],[role],', '删除角色', null, '/role/remove', '3', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('118', 'role_setAuthority', 'role', '[0],[system],[role],', '配置权限', null, '/role/setAuthority', '4', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('119', 'menu', 'system', '[0],[system],', '菜单管理', null, '/menu', '4', '2', '1', null, '1', '0');
-INSERT INTO `menu` VALUES ('120', 'menu_add', 'menu', '[0],[system],[menu],', '添加菜单', null, '/menu/add', '1', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('121', 'menu_edit', 'menu', '[0],[system],[menu],', '修改菜单', null, '/menu/edit', '2', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('122', 'menu_remove', 'menu', '[0],[system],[menu],', '删除菜单', null, '/menu/remove', '3', '3', '0', null, '1', '0');
-INSERT INTO `menu` VALUES ('128', 'log', 'system', '[0],[system],', '业务日志', null, '/log', '6', '2', '1', null, '1', '0');
-INSERT INTO `menu` VALUES ('130', 'druid', 'system', '[0],[system],', '监控管理', null, '/druid', '7', '2', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('131', 'dept', 'system', '[0],[system],', '部门管理', null, '/dept', '3', '2', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('132', 'dict', 'system', '[0],[system],', '字典管理', null, '/dict', '4', '2', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('133', 'loginLog', 'system', '[0],[system],', '登录日志', null, '/loginLog', '6', '2', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('134', 'log_clean', 'log', '[0],[system],[log],', '清空日志', null, '/log/delLog', '3', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('135', 'dept_add', 'dept', '[0],[system],[dept],', '添加部门', null, '/dept/add', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('136', 'dept_update', 'dept', '[0],[system],[dept],', '修改部门', null, '/dept/update', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('137', 'dept_delete', 'dept', '[0],[system],[dept],', '删除部门', null, '/dept/delete', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('138', 'dict_add', 'dict', '[0],[system],[dict],', '添加字典', null, '/dict/add', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('139', 'dict_update', 'dict', '[0],[system],[dict],', '修改字典', null, '/dict/update', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('140', 'dict_delete', 'dict', '[0],[system],[dict],', '删除字典', null, '/dict/delete', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('141', 'notice', 'system', '[0],[system],', '通知管理', null, '/notice', '9', '2', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('142', 'notice_add', 'notice', '[0],[system],[notice],', '添加通知', null, '/notice/add', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('143', 'notice_update', 'notice', '[0],[system],[notice],', '修改通知', null, '/notice/update', '2', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('144', 'notice_delete', 'notice', '[0],[system],[notice],', '删除通知', null, '/notice/delete', '3', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('145', 'hello', '0', '[0],', '通知', 'fa-rocket', '/notice/hello', '1', '1', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('148', 'code', 'system', '[0],[system],', '代码生成', 'fa-user', '/code', '10', '2', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('149', 'api_mgr', '0', '[0],', '接口文档', 'fa-leaf', '/swagger-ui.html', '2', '1', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('150', 'to_menu_edit', 'menu', '[0],[system],[menu],', '菜单编辑跳转', '', '/menu/menu_edit', '4', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('151', 'menu_list', 'menu', '[0],[system],[menu],', '菜单列表', '', '/menu/list', '5', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('152', 'to_dept_update', 'dept', '[0],[system],[dept],', '修改部门跳转', '', '/dept/dept_update', '4', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('153', 'dept_list', 'dept', '[0],[system],[dept],', '部门列表', '', '/dept/list', '5', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('154', 'dept_detail', 'dept', '[0],[system],[dept],', '部门详情', '', '/dept/detail', '6', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('155', 'to_dict_edit', 'dict', '[0],[system],[dict],', '修改菜单跳转', '', '/dict/dict_edit', '4', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('156', 'dict_list', 'dict', '[0],[system],[dict],', '字典列表', '', '/dict/list', '5', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('157', 'dict_detail', 'dict', '[0],[system],[dict],', '字典详情', '', '/dict/detail', '6', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('158', 'log_list', 'log', '[0],[system],[log],', '日志列表', '', '/log/list', '2', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('159', 'log_detail', 'log', '[0],[system],[log],', '日志详情', '', '/log/detail', '3', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('160', 'del_login_log', 'loginLog', '[0],[system],[loginLog],', '清空登录日志', '', '/loginLog/delLoginLog', '1', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('161', 'login_log_list', 'loginLog', '[0],[system],[loginLog],', '登录日志列表', '', '/loginLog/list', '2', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('162', 'to_role_edit', 'role', '[0],[system],[role],', '修改角色跳转', '', '/role/role_edit', '5', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('163', 'to_role_assign', 'role', '[0],[system],[role],', '角色分配跳转', '', '/role/role_assign', '6', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('164', 'role_list', 'role', '[0],[system],[role],', '角色列表', '', '/role/list', '7', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('165', 'to_assign_role', 'mgr', '[0],[system],[mgr],', '分配角色跳转', '', '/mgr/role_assign', '8', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('166', 'to_user_edit', 'mgr', '[0],[system],[mgr],', '编辑用户跳转', '', '/mgr/user_edit', '9', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('167', 'mgr_list', 'mgr', '[0],[system],[mgr],', '用户列表', '', '/mgr/list', '10', '3', '0', null, '1', null);
-
--- ----------------------------
--- Table structure for notice
+--  Table structure for `notice`
 -- ----------------------------
 DROP TABLE IF EXISTS `notice`;
 CREATE TABLE `notice` (
@@ -184,13 +119,7 @@ CREATE TABLE `notice` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='通知表';
 
 -- ----------------------------
--- Records of notice
--- ----------------------------
-INSERT INTO `notice` VALUES ('6', '世界', '10', '欢迎使用Guns管理系统', '2017-01-11 08:53:20', '1');
-INSERT INTO `notice` VALUES ('8', '你好', null, '你好', '2017-05-10 19:28:57', '1');
-
--- ----------------------------
--- Table structure for operation_log
+--  Table structure for `operation_log`
 -- ----------------------------
 DROP TABLE IF EXISTS `operation_log`;
 CREATE TABLE `operation_log` (
@@ -204,17 +133,10 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否成功',
   `message` text COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
--- Records of operation_log
--- ----------------------------
-INSERT INTO `operation_log` VALUES ('480', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-06-03 23:04:22', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('481', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-06-03 23:04:25', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('482', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-06-04 10:22:58', '成功', '菜单名称=分配角色跳转;;;字段名称:url地址,旧值:/role/role_assign,新值:/mgr/role_assign');
-
--- ----------------------------
--- Table structure for relation
+--  Table structure for `relation`
 -- ----------------------------
 DROP TABLE IF EXISTS `relation`;
 CREATE TABLE `relation` (
@@ -222,89 +144,10 @@ CREATE TABLE `relation` (
   `menuid` int(11) DEFAULT NULL COMMENT '菜单id',
   `roleid` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3679 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=3681 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
--- Records of relation
--- ----------------------------
-INSERT INTO `relation` VALUES ('3377', '105', '5');
-INSERT INTO `relation` VALUES ('3378', '106', '5');
-INSERT INTO `relation` VALUES ('3379', '107', '5');
-INSERT INTO `relation` VALUES ('3380', '108', '5');
-INSERT INTO `relation` VALUES ('3381', '109', '5');
-INSERT INTO `relation` VALUES ('3382', '110', '5');
-INSERT INTO `relation` VALUES ('3383', '111', '5');
-INSERT INTO `relation` VALUES ('3384', '112', '5');
-INSERT INTO `relation` VALUES ('3385', '113', '5');
-INSERT INTO `relation` VALUES ('3386', '114', '5');
-INSERT INTO `relation` VALUES ('3387', '115', '5');
-INSERT INTO `relation` VALUES ('3388', '116', '5');
-INSERT INTO `relation` VALUES ('3389', '117', '5');
-INSERT INTO `relation` VALUES ('3390', '118', '5');
-INSERT INTO `relation` VALUES ('3391', '119', '5');
-INSERT INTO `relation` VALUES ('3392', '120', '5');
-INSERT INTO `relation` VALUES ('3393', '121', '5');
-INSERT INTO `relation` VALUES ('3394', '122', '5');
-INSERT INTO `relation` VALUES ('3395', '150', '5');
-INSERT INTO `relation` VALUES ('3396', '151', '5');
-INSERT INTO `relation` VALUES ('3624', '105', '1');
-INSERT INTO `relation` VALUES ('3625', '106', '1');
-INSERT INTO `relation` VALUES ('3626', '107', '1');
-INSERT INTO `relation` VALUES ('3627', '108', '1');
-INSERT INTO `relation` VALUES ('3628', '109', '1');
-INSERT INTO `relation` VALUES ('3629', '110', '1');
-INSERT INTO `relation` VALUES ('3630', '111', '1');
-INSERT INTO `relation` VALUES ('3631', '112', '1');
-INSERT INTO `relation` VALUES ('3632', '113', '1');
-INSERT INTO `relation` VALUES ('3633', '165', '1');
-INSERT INTO `relation` VALUES ('3634', '166', '1');
-INSERT INTO `relation` VALUES ('3635', '167', '1');
-INSERT INTO `relation` VALUES ('3636', '114', '1');
-INSERT INTO `relation` VALUES ('3637', '115', '1');
-INSERT INTO `relation` VALUES ('3638', '116', '1');
-INSERT INTO `relation` VALUES ('3639', '117', '1');
-INSERT INTO `relation` VALUES ('3640', '118', '1');
-INSERT INTO `relation` VALUES ('3641', '162', '1');
-INSERT INTO `relation` VALUES ('3642', '163', '1');
-INSERT INTO `relation` VALUES ('3643', '164', '1');
-INSERT INTO `relation` VALUES ('3644', '119', '1');
-INSERT INTO `relation` VALUES ('3645', '120', '1');
-INSERT INTO `relation` VALUES ('3646', '121', '1');
-INSERT INTO `relation` VALUES ('3647', '122', '1');
-INSERT INTO `relation` VALUES ('3648', '150', '1');
-INSERT INTO `relation` VALUES ('3649', '151', '1');
-INSERT INTO `relation` VALUES ('3650', '128', '1');
-INSERT INTO `relation` VALUES ('3651', '134', '1');
-INSERT INTO `relation` VALUES ('3652', '158', '1');
-INSERT INTO `relation` VALUES ('3653', '159', '1');
-INSERT INTO `relation` VALUES ('3654', '130', '1');
-INSERT INTO `relation` VALUES ('3655', '131', '1');
-INSERT INTO `relation` VALUES ('3656', '135', '1');
-INSERT INTO `relation` VALUES ('3657', '136', '1');
-INSERT INTO `relation` VALUES ('3658', '137', '1');
-INSERT INTO `relation` VALUES ('3659', '152', '1');
-INSERT INTO `relation` VALUES ('3660', '153', '1');
-INSERT INTO `relation` VALUES ('3661', '154', '1');
-INSERT INTO `relation` VALUES ('3662', '132', '1');
-INSERT INTO `relation` VALUES ('3663', '138', '1');
-INSERT INTO `relation` VALUES ('3664', '139', '1');
-INSERT INTO `relation` VALUES ('3665', '140', '1');
-INSERT INTO `relation` VALUES ('3666', '155', '1');
-INSERT INTO `relation` VALUES ('3667', '156', '1');
-INSERT INTO `relation` VALUES ('3668', '157', '1');
-INSERT INTO `relation` VALUES ('3669', '133', '1');
-INSERT INTO `relation` VALUES ('3670', '160', '1');
-INSERT INTO `relation` VALUES ('3671', '161', '1');
-INSERT INTO `relation` VALUES ('3672', '141', '1');
-INSERT INTO `relation` VALUES ('3673', '142', '1');
-INSERT INTO `relation` VALUES ('3674', '143', '1');
-INSERT INTO `relation` VALUES ('3675', '144', '1');
-INSERT INTO `relation` VALUES ('3676', '148', '1');
-INSERT INTO `relation` VALUES ('3677', '145', '1');
-INSERT INTO `relation` VALUES ('3678', '149', '1');
-
--- ----------------------------
--- Table structure for role
+--  Table structure for `role`
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
@@ -319,13 +162,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
--- Records of role
--- ----------------------------
-INSERT INTO `role` VALUES ('1', '1', '0', '超级管理员', '24', 'administrator', '1');
-INSERT INTO `role` VALUES ('5', '2', '1', '临时', '26', 'temp', null);
-
--- ----------------------------
--- Table structure for test
+--  Table structure for `test`
 -- ----------------------------
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
@@ -335,12 +172,7 @@ CREATE TABLE `test` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of test
--- ----------------------------
-INSERT INTO `test` VALUES ('1', '123');
-
--- ----------------------------
--- Table structure for user
+--  Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -363,7 +195,15 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
--- Records of user
+--  Records 
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'girl.gif', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '2', 'sn93@qq.com', '18200000000', '1', '27', '1', '2016-01-29 08:49:53', '25');
-INSERT INTO `user` VALUES ('44', null, 'test', '45abb7879f6a8268f1ef600e6038ac73', 'ssts3', 'test', '2017-05-01 00:00:00', '1', 'abc@123.com', '', '5', '26', '1', '2017-05-16 20:33:37', null);
+INSERT INTO `dept` VALUES ('24','1','0','[0],','总公司','总公司','',NULL), ('25','2','24','[0],[24],','开发部','开发部','',NULL), ('26','3','24','[0],[24],','运营部','运营部','',NULL), ('27','4','24','[0],[24],','战略部','战略部','',NULL);
+INSERT INTO `dict` VALUES ('16','0','0','状态',NULL), ('17','1','16','启用',NULL), ('18','2','16','禁用',NULL), ('29','0','0','性别',NULL), ('30','1','29','男',NULL), ('31','2','29','女',NULL), ('35','0','0','账号状态',NULL), ('36','1','35','启用',NULL), ('37','2','35','冻结',NULL), ('38','3','35','已删除',NULL);
+INSERT INTO `login_log` VALUES ('126','退出日志','1','2017-06-04 10:21:55','成功',NULL,'127.0.0.1'), ('127','登录日志','1','2017-06-04 10:21:59','成功',NULL,'127.0.0.1'), ('128','退出日志','1','2017-06-04 10:22:59','成功',NULL,'127.0.0.1'), ('129','登录日志','1','2017-06-04 10:23:01','成功',NULL,'127.0.0.1'), ('130','登录失败日志',NULL,'2017-08-14 17:12:02','成功','账号:admin,账号密码错误','0:0:0:0:0:0:0:1'), ('131','登录日志','1','2017-08-14 17:12:20','成功',NULL,'0:0:0:0:0:0:0:1'), ('132','退出日志','1','2017-08-14 17:52:17','成功',NULL,'0:0:0:0:0:0:0:1'), ('133','登录日志','1','2017-08-14 17:52:22','成功',NULL,'0:0:0:0:0:0:0:1'), ('134','登录日志','1','2017-08-14 17:53:20','成功',NULL,'0:0:0:0:0:0:0:1'), ('135','退出日志','1','2017-08-14 18:00:12','成功',NULL,'0:0:0:0:0:0:0:1'), ('136','登录日志','1','2017-08-14 18:00:17','成功',NULL,'0:0:0:0:0:0:0:1'), ('137','退出日志','1','2017-08-14 18:05:03','成功',NULL,'0:0:0:0:0:0:0:1'), ('138','登录日志','1','2017-08-14 18:05:09','成功',NULL,'0:0:0:0:0:0:0:1'), ('139','退出日志','1','2017-08-14 18:06:02','成功',NULL,'0:0:0:0:0:0:0:1'), ('140','登录日志','1','2017-08-14 18:06:07','成功',NULL,'0:0:0:0:0:0:0:1'), ('141','退出日志','1','2017-08-14 18:08:23','成功',NULL,'0:0:0:0:0:0:0:1'), ('142','登录日志','1','2017-08-14 18:08:28','成功',NULL,'0:0:0:0:0:0:0:1');
+INSERT INTO `menu` VALUES ('105','system','0','[0],','系统管理','fa-user','','3','1','1',NULL,'1','1'), ('106','mgr','system','[0],[system],','用户管理','','/mgr','1','2','1',NULL,'1','0'), ('107','mgr_add','mgr','[0],[system],[mgr],','添加用户',NULL,'/mgr/add','1','3','0',NULL,'1','0'), ('108','mgr_edit','mgr','[0],[system],[mgr],','修改用户',NULL,'/mgr/edit','2','3','0',NULL,'1','0'), ('109','mgr_delete','mgr','[0],[system],[mgr],','删除用户',NULL,'/mgr/delete','3','3','0',NULL,'1','0'), ('110','mgr_reset','mgr','[0],[system],[mgr],','重置密码',NULL,'/mgr/reset','4','3','0',NULL,'1','0'), ('111','mgr_freeze','mgr','[0],[system],[mgr],','冻结用户',NULL,'/mgr/freeze','5','3','0',NULL,'1','0'), ('112','mgr_unfreeze','mgr','[0],[system],[mgr],','解除冻结用户',NULL,'/mgr/unfreeze','6','3','0',NULL,'1','0'), ('113','mgr_setRole','mgr','[0],[system],[mgr],','分配角色',NULL,'/mgr/setRole','7','3','0',NULL,'1','0'), ('114','role','system','[0],[system],','角色管理',NULL,'/role','2','2','1',NULL,'1','0'), ('115','role_add','role','[0],[system],[role],','添加角色',NULL,'/role/add','1','3','0',NULL,'1','0'), ('116','role_edit','role','[0],[system],[role],','修改角色',NULL,'/role/edit','2','3','0',NULL,'1','0'), ('117','role_remove','role','[0],[system],[role],','删除角色',NULL,'/role/remove','3','3','0',NULL,'1','0'), ('118','role_setAuthority','role','[0],[system],[role],','配置权限',NULL,'/role/setAuthority','4','3','0',NULL,'1','0'), ('119','menu','system','[0],[system],','菜单管理',NULL,'/menu','4','2','1',NULL,'1','0'), ('120','menu_add','menu','[0],[system],[menu],','添加菜单',NULL,'/menu/add','1','3','0',NULL,'1','0'), ('121','menu_edit','menu','[0],[system],[menu],','修改菜单',NULL,'/menu/edit','2','3','0',NULL,'1','0'), ('122','menu_remove','menu','[0],[system],[menu],','删除菜单',NULL,'/menu/remove','3','3','0',NULL,'1','0'), ('128','log','system','[0],[system],','业务日志',NULL,'/log','6','2','1',NULL,'1','0'), ('130','druid','system','[0],[system],','监控管理',NULL,'/druid','7','2','1',NULL,'1',NULL), ('131','dept','system','[0],[system],','部门管理',NULL,'/dept','3','2','1',NULL,'1',NULL), ('132','dict','system','[0],[system],','字典管理',NULL,'/dict','4','2','1',NULL,'1',NULL), ('133','loginLog','system','[0],[system],','登录日志',NULL,'/loginLog','6','2','1',NULL,'1',NULL), ('134','log_clean','log','[0],[system],[log],','清空日志',NULL,'/log/delLog','3','3','0',NULL,'1',NULL), ('135','dept_add','dept','[0],[system],[dept],','添加部门',NULL,'/dept/add','1','3','0',NULL,'1',NULL), ('136','dept_update','dept','[0],[system],[dept],','修改部门',NULL,'/dept/update','1','3','0',NULL,'1',NULL), ('137','dept_delete','dept','[0],[system],[dept],','删除部门',NULL,'/dept/delete','1','3','0',NULL,'1',NULL), ('138','dict_add','dict','[0],[system],[dict],','添加字典',NULL,'/dict/add','1','3','0',NULL,'1',NULL), ('139','dict_update','dict','[0],[system],[dict],','修改字典',NULL,'/dict/update','1','3','0',NULL,'1',NULL), ('140','dict_delete','dict','[0],[system],[dict],','删除字典',NULL,'/dict/delete','1','3','0',NULL,'1',NULL), ('141','notice','system','[0],[system],','通知管理',NULL,'/notice','9','2','1',NULL,'1',NULL), ('142','notice_add','notice','[0],[system],[notice],','添加通知',NULL,'/notice/add','1','3','0',NULL,'1',NULL), ('143','notice_update','notice','[0],[system],[notice],','修改通知',NULL,'/notice/update','2','3','0',NULL,'1',NULL), ('144','notice_delete','notice','[0],[system],[notice],','删除通知',NULL,'/notice/delete','3','3','0',NULL,'1',NULL), ('145','hello','0','[0],','通知','fa-rocket','/notice/hello','1','1','1',NULL,'1',NULL), ('148','code','system','[0],[system],','代码生成','fa-user','/code','10','2','1',NULL,'1',NULL), ('149','api_mgr','0','[0],','接口文档','fa-leaf','/swagger-ui.html','2','1','1',NULL,'1',NULL), ('150','to_menu_edit','menu','[0],[system],[menu],','菜单编辑跳转','','/menu/menu_edit','4','3','0',NULL,'1',NULL), ('151','menu_list','menu','[0],[system],[menu],','菜单列表','','/menu/list','5','3','0',NULL,'1',NULL), ('152','to_dept_update','dept','[0],[system],[dept],','修改部门跳转','','/dept/dept_update','4','3','0',NULL,'1',NULL), ('153','dept_list','dept','[0],[system],[dept],','部门列表','','/dept/list','5','3','0',NULL,'1',NULL), ('154','dept_detail','dept','[0],[system],[dept],','部门详情','','/dept/detail','6','3','0',NULL,'1',NULL), ('155','to_dict_edit','dict','[0],[system],[dict],','修改菜单跳转','','/dict/dict_edit','4','3','0',NULL,'1',NULL), ('156','dict_list','dict','[0],[system],[dict],','字典列表','','/dict/list','5','3','0',NULL,'1',NULL), ('157','dict_detail','dict','[0],[system],[dict],','字典详情','','/dict/detail','6','3','0',NULL,'1',NULL), ('158','log_list','log','[0],[system],[log],','日志列表','','/log/list','2','3','0',NULL,'1',NULL), ('159','log_detail','log','[0],[system],[log],','日志详情','','/log/detail','3','3','0',NULL,'1',NULL), ('160','del_login_log','loginLog','[0],[system],[loginLog],','清空登录日志','','/loginLog/delLoginLog','1','3','0',NULL,'1',NULL), ('161','login_log_list','loginLog','[0],[system],[loginLog],','登录日志列表','','/loginLog/list','2','3','0',NULL,'1',NULL), ('162','to_role_edit','role','[0],[system],[role],','修改角色跳转','','/role/role_edit','5','3','0',NULL,'1',NULL), ('163','to_role_assign','role','[0],[system],[role],','角色分配跳转','','/role/role_assign','6','3','0',NULL,'1',NULL), ('164','role_list','role','[0],[system],[role],','角色列表','','/role/list','7','3','0',NULL,'1',NULL), ('165','to_assign_role','mgr','[0],[system],[mgr],','分配角色跳转','','/mgr/role_assign','8','3','0',NULL,'1',NULL), ('166','to_user_edit','mgr','[0],[system],[mgr],','编辑用户跳转','','/mgr/user_edit','9','3','0',NULL,'1',NULL), ('167','mgr_list','mgr','[0],[system],[mgr],','用户列表','','/mgr/list','10','3','0',NULL,'1',NULL), ('168','project','system','[0],[system],','项目管理','','/ProjectManager','11','2','1',NULL,'1',NULL), ('169','project_add','project','[0],[system],[project],','添加项目','','/ProjectManager_add','1','3','0',NULL,'1',NULL);
+INSERT INTO `notice` VALUES ('6','世界','10','欢迎使用Hmc管理系统','2017-01-11 08:53:20','1'), ('8','你好',NULL,'你好','2017-05-10 19:28:57','1');
+INSERT INTO `operation_log` VALUES ('480','业务日志','清空业务日志','1','com.stylefeng.guns.modular.system.controller.LogController','delLog','2017-06-03 23:04:22','成功','主键id=null'), ('481','业务日志','清空登录日志','1','com.stylefeng.guns.modular.system.controller.LoginLogController','delLog','2017-06-03 23:04:25','成功','主键id=null'), ('482','业务日志','修改菜单','1','com.stylefeng.guns.modular.system.controller.MenuController','edit','2017-06-04 10:22:58','成功','菜单名称=分配角色跳转;;;字段名称:url地址,旧值:/role/role_assign,新值:/mgr/role_assign'), ('483','业务日志','修改通知','1','com.lcc.lccshot.controller.NoticeController','update','2017-08-14 17:12:37','成功','标题=世界;;;字段名称:内容,旧值:欢迎使用Guns管理系统,新值:欢迎使用Hmc管理系统'), ('484','业务日志','菜单新增','1','com.lcc.lccshot.controller.MenuController','add','2017-08-14 17:50:08','成功','菜单名称=项目管理'), ('485','业务日志','菜单新增','1','com.lcc.lccshot.controller.MenuController','add','2017-08-14 17:52:04','成功','菜单名称=添加项目'), ('486','业务日志','修改菜单','1','com.lcc.lccshot.controller.MenuController','edit','2017-08-14 18:03:14','成功','菜单名称=项目管理;;;');
+INSERT INTO `relation` VALUES ('3377','105','5'), ('3378','106','5'), ('3379','107','5'), ('3380','108','5'), ('3381','109','5'), ('3382','110','5'), ('3383','111','5'), ('3384','112','5'), ('3385','113','5'), ('3386','114','5'), ('3387','115','5'), ('3388','116','5'), ('3389','117','5'), ('3390','118','5'), ('3391','119','5'), ('3392','120','5'), ('3393','121','5'), ('3394','122','5'), ('3395','150','5'), ('3396','151','5'), ('3624','105','1'), ('3625','106','1'), ('3626','107','1'), ('3627','108','1'), ('3628','109','1'), ('3629','110','1'), ('3630','111','1'), ('3631','112','1'), ('3632','113','1'), ('3633','165','1'), ('3634','166','1'), ('3635','167','1'), ('3636','114','1'), ('3637','115','1'), ('3638','116','1'), ('3639','117','1'), ('3640','118','1'), ('3641','162','1'), ('3642','163','1'), ('3643','164','1'), ('3644','119','1'), ('3645','120','1'), ('3646','121','1'), ('3647','122','1'), ('3648','150','1'), ('3649','151','1'), ('3650','128','1'), ('3651','134','1'), ('3652','158','1'), ('3653','159','1'), ('3654','130','1'), ('3655','131','1'), ('3656','135','1'), ('3657','136','1'), ('3658','137','1'), ('3659','152','1'), ('3660','153','1'), ('3661','154','1'), ('3662','132','1'), ('3663','138','1'), ('3664','139','1'), ('3665','140','1'), ('3666','155','1'), ('3667','156','1'), ('3668','157','1'), ('3669','133','1'), ('3670','160','1'), ('3671','161','1'), ('3672','141','1'), ('3673','142','1'), ('3674','143','1'), ('3675','144','1'), ('3676','148','1'), ('3677','145','1'), ('3678','149','1'), ('3679','168','1'), ('3680','169','1');
+INSERT INTO `role` VALUES ('1','1','0','超级管理员','24','administrator','1'), ('5','2','1','临时','26','temp',NULL);
+INSERT INTO `test` VALUES ('1','123');
+INSERT INTO `user` VALUES ('1','girl.gif','admin','ecfadcde9305f8891bcfe5a1e28c253e','8pgby','张三','2017-05-05 00:00:00','2','sn93@qq.com','18200000000','1','27','1','2016-01-29 08:49:53','25'), ('44',NULL,'test','45abb7879f6a8268f1ef600e6038ac73','ssts3','test','2017-05-01 00:00:00','1','abc@123.com','','5','26','1','2017-05-16 20:33:37',NULL);
