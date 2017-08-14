@@ -10,7 +10,7 @@ import com.lcc.lccshot.utils.ToolUtil;
  */
 public class ContextConfig {
 
-    private String projectPath = "D:\\ideaSpace\\base";//模板输出的项目目录
+    private String projectPath = "D:\\lcc\\base";//模板输出的项目目录
     private String bizChName;   //业务名称
     private String bizEnName;   //业务英文名称
     private String bizEnBigName;//业务英文名称(大写)

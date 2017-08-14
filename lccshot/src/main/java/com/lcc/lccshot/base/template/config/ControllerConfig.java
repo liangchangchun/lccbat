@@ -13,7 +13,7 @@ import com.google.common.collect.Lists;
  */
 public class ControllerConfig {
 
-    private String controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\system\\controller\\{}Controller.java";
+    private String controllerPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\controller\\{}Controller.java";
     private String packageName;//包名称
     private List<String> imports;//所引入的包
 
@@ -23,14 +23,14 @@ public class ControllerConfig {
 
     private void init(){
         ArrayList<String> imports = Lists.newArrayList();
-        imports.add("com.stylefeng.guns.common.controller.BaseController");
+        imports.add("com.lcc.lccshot.base.BaseController");
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
         imports.add("org.springframework.ui.Model");
         imports.add("org.springframework.web.bind.annotation.PathVariable");
         this.imports = imports;
-        this.packageName = "com.stylefeng.guns.modular.system.controller";
+        this.packageName = "com.lcc.lccshot.controller";
     }
 
     public String getPackageName() {
