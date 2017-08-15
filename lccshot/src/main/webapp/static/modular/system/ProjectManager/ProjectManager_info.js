@@ -44,7 +44,7 @@ ProjectManagerInfoDlg.close = function() {
  * 收集数据
  */
 ProjectManagerInfoDlg.collectData = function() {
-    this.set('id');
+    this.set('projectId').set('projectName').set('businessName').set('description').set('projectType').set('projectTemplateId');
 }
 
 /**
@@ -54,7 +54,7 @@ ProjectManagerInfoDlg.addSubmit = function() {
 
     this.clearData();
     this.collectData();
-
+    
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/ProjectManager/add", function(data){
         Feng.success("添加成功!");
@@ -88,5 +88,6 @@ ProjectManagerInfoDlg.editSubmit = function() {
 }
 
 $(function() {
-
+	$("#projectTemplateId").val($("#projectTemplateIdValue").val());
+	$("#projectType").val($("#projectTypeValue").val());
 });

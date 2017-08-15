@@ -14,7 +14,12 @@ var ProjectManager = {
 ProjectManager.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'}
+        {title: 'ID', field: 'projectId', visible: false, align: 'center', valign: 'middle'},
+        {title: '项目名称', field: 'projectName', align: 'center', valign: 'middle', sortable: true},
+        {title: '业务名称', field: 'businessName', align: 'center', valign: 'middle', sortable: true},
+        {title: '项目描述', field: 'description', align: 'center', valign: 'middle', sortable: true},
+        {title: '项目类型', field: 'projectTypeName', align: 'center', valign: 'middle', sortable: true},
+        {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle', sortable: true}
     ];
 };
 
@@ -58,7 +63,7 @@ ProjectManager.openProjectManagerDetail = function () {
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/ProjectManager/ProjectManager_update/' + ProjectManager.seItem.id
+            content: Feng.ctxPath + '/ProjectManager/ProjectManager_update/' + ProjectManager.seItem.projectId
         });
         this.layerIndex = index;
     }
@@ -75,7 +80,7 @@ ProjectManager.delete = function () {
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("ProjectManagerId",this.seItem.id);
+        ajax.set("ProjectManagerId",this.seItem.projectId);
         ajax.start();
     }
 };

@@ -13,10 +13,14 @@ import com.lcc.lccshot.exception.BizExceptionEnum;
 import com.lcc.lccshot.exception.BussinessException;
 import com.lcc.lccshot.domain.vo.ZTreeNode;
 import com.lcc.lccshot.domain.Menu;
+import com.lcc.lccshot.domain.Relation;
+import com.lcc.lccshot.domain.Role;
 import com.lcc.lccshot.core.log.LogObjectHolder;
+import com.lcc.lccshot.core.shiro.ShiroKit;
 import com.lcc.lccshot.utils.BeanKit;
 import com.lcc.lccshot.utils.ToolUtil;
 import com.lcc.lccshot.repository.MenuRepository;
+import com.lcc.lccshot.repository.RelationRepository;
 import com.lcc.lccshot.service.IMenuService;
 
 import org.springframework.stereotype.Controller;
@@ -49,6 +53,9 @@ public class MenuController extends BaseController {
 
     @Resource
     IMenuService menuService;
+    
+    @Resource
+    RelationRepository relationDao;
 
     /**
      * 跳转到菜单列表列表页面
@@ -143,6 +150,13 @@ public class MenuController extends BaseController {
 
         menu.setStatus(MenuStatus.ENABLE.getCode());
         this.menuDao.save(menu);
+        Relation relation = this.relationDao.findByMenuid(menu.getId());
+        if (ToolUtil.isEmpty(relation)) {
+        	relation = new Relation();
+        	relation.setMenuid(menu.getId());
+        	relation.setRoleid(ShiroKit.getUser().getRoleList().get(0));
+        	this.relationDao.saveAndFlush(relation);
+        }
         return SUCCESS_TIP;
     }
 

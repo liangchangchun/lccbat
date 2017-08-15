@@ -3,15 +3,30 @@
     <div class="ibox-content">
         <div class="form-horizontal">
 
-            <input type="hidden" id="id" value="">
+            <input type="hidden" id="projectId" value="">
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-
+					<#input id="projectName" name="项目名称" underline="true" />
+					<#input id="businessName" name="业务名称" underline="true" />
+					<#select id="projectTemplateId" name="项目模板">
+                        <option  value="0">1.0模板</option>
+                        <option  value="1">2.0模板</option>
+                        <option  value="2">3.0模板</option>
+                    </#select>
                 </div>
 
                 <div class="col-sm-6">
-
+                	<#select id="projectType" name="项目类型" underline="true" >
+                        <option  value="0">java项目</option>
+                        <option  value="1">go项目</option>
+                    </#select>
+					 <div class="form-group">
+                        <label class="col-sm-3 control-label">项目描述</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="description" type="text" style="height: 100px;"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
 

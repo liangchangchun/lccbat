@@ -1,0 +1,15 @@
+package ${repository.packageName};
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import com.lcc.lccshot.domain.FastProject;
+
+/**
+ * 数据dao层curd 
+ * @author lcc
+ *
+ */
+public interface ${context.bizEnName}Repository extends JpaRepository<${context.bizEnName}, Integer>,JpaSpecificationExecutor<${context.bizEnName}> {
+
+}

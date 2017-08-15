@@ -12,6 +12,10 @@ import org.springframework.data.jpa.repository.Query;
 import com.lcc.lccshot.domain.Relation;
 
 public interface RelationRepository extends JpaRepository<Relation, Integer> {
+	
+	Relation findByMenuid(Integer menuid);
+	
+	
 
 	@Transactional
 	@Modifying

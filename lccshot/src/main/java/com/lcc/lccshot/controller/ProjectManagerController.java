@@ -1,11 +1,31 @@
 package com.lcc.lccshot.controller;
 
-import com.lcc.lccshot.base.BaseController;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.lcc.lccshot.base.BaseController;
+import com.lcc.lccshot.base.warpper.FastProjectWarpper;
+import com.lcc.lccshot.core.annotion.Permission;
+import com.lcc.lccshot.core.constant.Const;
+import com.lcc.lccshot.domain.FastProject;
+import com.lcc.lccshot.exception.BizExceptionEnum;
+import com.lcc.lccshot.exception.BussinessException;
+import com.lcc.lccshot.repository.FastProjectRepository;
+import com.lcc.lccshot.service.IFastProjectService;
+import com.lcc.lccshot.utils.BeanKit;
+import com.lcc.lccshot.utils.ToolUtil;
 
 /**
  * 项目管理控制器
@@ -18,6 +38,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ProjectManagerController extends BaseController {
 
     private String PREFIX = "/system/ProjectManager/";
+    
+    @Resource
+    FastProjectRepository fastProjectDao;
+    
+    @Resource
+    IFastProjectService fastProjectService;
 
     /**
      * 跳转到项目管理首页
@@ -40,6 +66,12 @@ public class ProjectManagerController extends BaseController {
      */
     @RequestMapping("/ProjectManager_update/{ProjectManagerId}")
     public String ProjectManagerUpdate(@PathVariable Integer ProjectManagerId, Model model) {
+    	   if (ToolUtil.isEmpty(ProjectManagerId)) {
+               throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+           }
+    	FastProject project  = fastProjectDao.findByProjectId(ProjectManagerId);
+    	Map<String, Object> map = BeanKit.beanToMap(project);
+    	model.addAttribute("ProjectManager", map);
         return PREFIX + "ProjectManager_edit.html";
     }
 
@@ -49,7 +81,8 @@ public class ProjectManagerController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return null;
+    	List<FastProject> list = this.fastProjectService.list(condition);
+    	return super.warpObject(new FastProjectWarpper(list,FastProject.class));
     }
 
     /**
@@ -57,16 +90,26 @@ public class ProjectManagerController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add() {
+    public Object add(@Valid FastProject project, BindingResult result) {
+    	 if (result.hasErrors()) {
+             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+         }
+    	 project.setCreatetime(new Date());
+    	 fastProjectDao.save(project);
         return super.SUCCESS_TIP;
     }
 
     /**
      * 删除项目管理
      */
+    @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete() {
+    public Object delete(@RequestParam Integer ProjectManagerId) {
+    	 if (ToolUtil.isEmpty(ProjectManagerId)) {
+             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+         }
+    	 fastProjectDao.delete(ProjectManagerId);
         return SUCCESS_TIP;
     }
 
@@ -76,7 +119,13 @@ public class ProjectManagerController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update() {
+    public Object update(@Valid FastProject project, BindingResult result) {
+    	if (result.hasErrors()) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+    	FastProject old = fastProjectDao.findByProjectId(project.getProjectId());
+    	project.setCreatetime(old.getCreatetime());
+    	fastProjectDao.save(project);
         return super.SUCCESS_TIP;
     }
 
