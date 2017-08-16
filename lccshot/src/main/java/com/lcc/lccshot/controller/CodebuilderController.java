@@ -56,6 +56,7 @@ public class CodebuilderController extends BaseController {
             }
             config.setDomainName(domainName);
             config.setDomainValues(domainValues);
+            
     	return super.SUCCESS_TIP;
     }
 }
