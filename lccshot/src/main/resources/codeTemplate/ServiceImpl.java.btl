@@ -1,0 +1,27 @@
+package ${serviceImpl.packageName};
+
+<% for(import in serviceImpl.imports!){ %>
+import ${import};
+<% } %>
+
+import ${context.basePackage}.domain.${context.domainBigName};
+import ${context.basePackage}.repository.${context.domainBigName}Repository;
+import ${context.basePackage}.service.I${context.domainBigName}Service;
+
+/**
+ * ${context.bizChName}service实现类
+ *
+ * @author liangchangchun
+ * @Date ${tool.currentTime()}
+ */
+@Service
+public class ${context.bizEnBigName}ServiceImpl extends BaseServiceTemplate<${context.bizEnBigName}Repository,${context.domainBigName}> implements I${context.bizEnBigName}Service{
+
+	@Override
+	public List<${context.domainBigName}> list(String condition) {
+		Where where = Where.create();
+			this.initWhere(where);
+			Sort sort = new Sort(Direction.DESC, "createTime");
+			return this.findAll(sort);
+	}
+}

@@ -23,12 +23,25 @@ public class ControllerConfig {
 
     private void init(){
         ArrayList<String> imports = Lists.newArrayList();
-        imports.add("com.lcc.lccshot.base.BaseController");
+        imports.add("java.util.Date");
+        imports.add("java.util.List");
+        imports.add("java.util.Map");
+        
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
         imports.add("org.springframework.ui.Model");
+        imports.add("org.springframework.validation.BindingResult");
         imports.add("org.springframework.web.bind.annotation.PathVariable");
+        imports.add("org.springframework.web.bind.annotation.RequestParam");
+
+        imports.add("com.lcc.lccshot.base.BaseController");
+        imports.add("com.lcc.lccshot.core.annotion.Permission");
+        imports.add("com.lcc.lccshot.core.constant.Const");
+        imports.add("com.lcc.lccshot.exception.BizExceptionEnum");
+        imports.add("com.lcc.lccshot.exception.BussinessException");
+        imports.add("com.lcc.lccshot.utils.BeanKit");
+        imports.add("com.lcc.lccshot.utils.ToolUtil");
         this.imports = imports;
         this.packageName = "com.lcc.lccshot.controller";
     }

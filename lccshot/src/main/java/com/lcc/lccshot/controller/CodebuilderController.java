@@ -1,6 +1,7 @@
 package com.lcc.lccshot.controller;
 
 import com.lcc.lccshot.base.BaseController;
+import com.lcc.lccshot.base.template.codeengine.SimpleCoderEngine;
 import com.lcc.lccshot.base.template.config.CodeConfig;
 import com.lcc.lccshot.core.annotion.Permission;
 import com.lcc.lccshot.core.constant.Const;
@@ -56,7 +57,8 @@ public class CodebuilderController extends BaseController {
             }
             config.setDomainName(domainName);
             config.setDomainValues(domainValues);
-            
+            SimpleCoderEngine coderEngine = new SimpleCoderEngine(config);
+            coderEngine.start();
     	return super.SUCCESS_TIP;
     }
 }

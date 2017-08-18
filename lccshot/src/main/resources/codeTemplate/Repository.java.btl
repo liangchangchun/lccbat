@@ -1,15 +1,17 @@
 package ${repository.packageName};
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+<% for(import in repository.imports!){ %>
+import ${import};
+<% } %>
 
-import com.lcc.lccshot.domain.FastProject;
+import ${context.basePackage}.domain.${context.domainBigName};
 
 /**
  * 数据dao层curd 
  * @author lcc
  *
  */
-public interface ${context.bizEnName}Repository extends JpaRepository<${context.bizEnName}, Integer>,JpaSpecificationExecutor<${context.bizEnName}> {
-
+public interface ${context.bizEnBigName}Repository extends JpaRepository<${context.domainBigName}, Integer>,JpaSpecificationExecutor<${context.domainBigName}> {
+	
+	${context.domainBigName} findBy${context.domainBigName}Id(Integer id);
 }

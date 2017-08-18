@@ -21,9 +21,8 @@ public abstract class BaseCoderEngine {
 
 	protected GroupTemplate groupTemplate;
 	
-	public BaseCoderEngine(CodeConfig codeConfig,CoderFace coderface){
+	public BaseCoderEngine(CodeConfig codeConfig){
 		init();
-		this.face = coderface;
 		this.config = codeConfig;
 	}
 
@@ -75,5 +74,6 @@ public abstract class BaseCoderEngine {
 		    	face.createIService();
 		    	face.createServiceImpl();
 		    	face.createDao();
+		    	face.createDomain();
 		}
 }

@@ -16,14 +16,11 @@ public class RepositoryConfig {
 
     private void init(){
         ArrayList<String> imports = Lists.newArrayList();
-        imports.add("com.lcc.lccshot.base.BaseController");
-        imports.add("org.springframework.stereotype.Controller");
-        imports.add("org.springframework.web.bind.annotation.RequestMapping");
-        imports.add("org.springframework.web.bind.annotation.ResponseBody");
-        imports.add("org.springframework.ui.Model");
-        imports.add("org.springframework.web.bind.annotation.PathVariable");
+        imports.add("org.springframework.data.jpa.repository.JpaRepository");
+        imports.add("org.springframework.data.jpa.repository.JpaSpecificationExecutor");
+
         this.imports = imports;
-        this.packageName = "com.lcc.lccshot.controller";
+        this.packageName = "com.lcc.lccshot.repository";
     }
 
     public String getPackageName() {

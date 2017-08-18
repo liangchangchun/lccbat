@@ -4,10 +4,14 @@ package ${controller.packageName};
 import ${import};
 <% } %>
 
+import ${context.basePackage}.domain.${context.domainBigName};
+import ${context.basePackage}.repository.${context.domainBigName}Repository;
+import ${context.basePackage}.service.I${context.domainBigName}Service;
+
 /**
  * ${context.bizChName}控制器
  *
- * @author fengshuonan
+ * @author liangchangchun
  * @Date ${tool.currentTime()}
  */
 @Controller
@@ -15,6 +19,12 @@ import ${import};
 public class ${context.bizEnBigName}Controller extends BaseController {
 
     private String PREFIX = "/system/${context.bizEnName}/";
+    
+    @Resource
+    ${context.bizEnBigName}Repository ${context.bizEnName}Repository;
+    
+    @Resource
+    I${context.bizEnBigName}Service ${context.bizEnName}Service;
 
     /**
      * 跳转到${context.bizChName}首页
@@ -35,8 +45,14 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     /**
      * 跳转到修改${context.bizChName}
      */
-    @RequestMapping("/${context.bizEnName}_update/{${context.bizEnName}Id}")
-    public String ${context.bizEnName}Update(@PathVariable Integer ${context.bizEnName}Id, Model model) {
+    @RequestMapping("/${context.bizEnName}_update/{${context.domainName}Id}")
+    public String ${context.bizEnName}Update(@PathVariable Integer ${context.domainName}Id, Model model) {
+     	if (ToolUtil.isEmpty(${context.domainName}Id)) {
+               throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+           }
+    	${context.domainBigName} ${context.domainName}  = ${context.bizEnName}Repository.findBy${context.domainName}Id(${context.domainName}Id);
+    	Map<String, Object> map = BeanKit.beanToMap(${context.domainName});
+    	model.addAttribute("${context.domainName}", map);
         return PREFIX + "${context.bizEnName}_edit.html";
     }
 
@@ -46,7 +62,8 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return null;
+    	List<${context.domainBigName}> list = this.${context.bizEnName}Service.list(condition);
+        return list;
     }
 
     /**
@@ -54,7 +71,13 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add() {
+    public Object add(@Valid ${context.domainBigName}  ${context.domainName}, BindingResult result) {
+     	if (result.hasErrors()) {
+             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+         }
+    	 ${context.domainName}.setCreatetime(new Date());
+    	 ${context.domainName}.setUpdatetime(new Date());
+    	 ${context.bizEnName}Repository.save(${context.domainName});
         return super.SUCCESS_TIP;
     }
 
@@ -63,7 +86,11 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete() {
+    public Object delete(@RequestParam Integer ${context.domainName}Id) {
+    	if (ToolUtil.isEmpty(${context.domainName}Id)) {
+             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+         }
+    	 ${context.bizEnName}Repository.delete(${context.domainName}Id);
         return SUCCESS_TIP;
     }
 
@@ -73,7 +100,14 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update() {
+    public Object update(@Valid ${context.domainBigName}  ${context.domainName}, BindingResult result) {
+    	if (result.hasErrors()) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+    	${context.domainBigName} old = ${context.bizEnName}Repository.findBy${context.bizEnName}Id(${context.domainName}.get${context.domainBigName}Id());
+    	${context.domainName}.setCreatetime(old.getCreatetime());
+    	${context.domainName}.setUpdatetime(new Date());
+    	${context.bizEnName}Repository.save(${context.domainName});
         return super.SUCCESS_TIP;
     }
 

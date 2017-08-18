@@ -39,4 +39,8 @@ public interface CoderFace {
       * dao层类
       */
      void createDao();
+     /**
+      * domain 实体类
+      */
+     void createDomain();
 }

@@ -1,0 +1,70 @@
+package ${domain.packageName};
+
+<% for(import in domain.imports!){ %>
+import ${import};
+<% } %>
+
+/**
+ * ${context.domainBigName} 实体类
+ *
+ * @author liangchangchun
+ * @Date ${tool.currentTime()}
+ */
+
+@Entity
+public class ${context.domainBigName} implements Serializable {
+	
+	@Id
+	@GeneratedValue
+	private Integer ${context.domainName}Id;
+	
+	/**
+     * 创建时间
+     */
+	private Date createTime;
+	/**
+     * 修改时间
+     */
+	private Date updateTime;
+	
+	
+	<% for(cdomain in domain.cdomains!){ %>
+	/**
+     * ${cdomain.columnName}
+     */
+	private ${cdomain.type} ${cdomain.column};
+	
+	public ${cdomain.type} get${cdomain.bigColumn}() {
+		return this.${cdomain.column};
+	}
+
+	public void set${cdomain.bigColumn}(${cdomain.type} ${cdomain.column}) {
+		this.${cdomain.column} = ${cdomain.column};
+	}
+	<% } %>
+	
+	public Integer get${context.domainBigName}Id() {
+		return ${context.domainName}Id;
+	}
+	public void set${context.domainBigName}Id(Integer ${context.domainName}Id) {
+		this.${context.domainName}Id = ${context.domainName}Id;
+	}
+	
+	public Date getCreateTime() {
+		return this.createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	
+	
+}

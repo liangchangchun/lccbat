@@ -74,6 +74,7 @@ Codebuilder.create = function () {
     baseAjax.set("bizChName");
     baseAjax.set("bizEnName");
     baseAjax.set("path");
+    this.collectData();
     baseAjax.set('domainName',this.domainName);
     baseAjax.set('domainValues',this.mutiString);
     baseAjax.start();

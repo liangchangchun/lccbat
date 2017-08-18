@@ -1,0 +1,17 @@
+package ${iService.packageName};
+
+<% for(import in iService.imports!){ %>
+import ${import};
+<% } %>
+
+import ${context.basePackage}.domain.${context.domainBigName};
+
+/**
+ * ${context.bizChName}业务接口
+ *
+ * @author liangchangchun
+ * @Date ${tool.currentTime()}
+ */
+public interface I${context.bizEnBigName}Service {
+	List<${context.domainBigName}> list(String condition);
+}

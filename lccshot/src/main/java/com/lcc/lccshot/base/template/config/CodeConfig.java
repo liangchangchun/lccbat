@@ -5,6 +5,7 @@ import com.lcc.lccshot.utils.ToolUtil;
 public class CodeConfig {
 
     private String projectPath = "D:\\lcc\\base";//模板默认输出的项目目录
+    private String basePackage = "com.lcc.lccshot";
     
     private String pagePathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\system\\{}\\{}.html";
     private String pageAddPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\system\\{}\\{}_add.html";
@@ -16,15 +17,14 @@ public class CodeConfig {
     private String iServicePathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\service\\I{}Service.java";
     private String serviceImplPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\service\\impl\\{}ServiceImpl.java";
 	private String repositoryPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\repository\\{}Repository.java";
-	private String DomainPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\repository\\{}Repository.java";
+	private String domainPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\domain\\{}.java";
 	
     private String bizChName;   				 //业务名称
     private String bizEnName;   				 //业务英文名称
     private String bizEnBigName;				 //业务英文名称(大写)
     private String domainName;  				 //业务实体
+    private String domainBigName;  				 //业务实体
     private String domainValues;				 //业务实体属性
-
-
 
     public String getPagePathTemplate() {
         return pagePathTemplate;
@@ -34,7 +34,15 @@ public class CodeConfig {
         this.pagePathTemplate = pagePathTemplate;
     }
 
-    public String getPageJsPathTemplate() {
+    public String getBasePackage() {
+		return basePackage;
+	}
+
+	public void setBasePackage(String basePackage) {
+		this.basePackage = basePackage;
+	}
+
+	public String getPageJsPathTemplate() {
         return pageJsPathTemplate;
     }
 
@@ -100,15 +108,24 @@ public class CodeConfig {
     }
 
 	public String getDomainName() {
-		return ToolUtil.firstLetterToUpper(domainName);
+		return domainName;
 	}
 
 	public void setDomainName(String domainName) {
 		this.domainName = domainName;
+		this.domainBigName = ToolUtil.firstLetterToUpper(this.domainName);
 	}
 
 	public String getDomainValues() {
 		return domainValues;
+	}
+	
+	public String getDomainBigName() {
+		return domainBigName;
+	}
+
+	public void setDomainBigName(String domainBigName) {
+		this.domainBigName = domainBigName;
 	}
 
 	public void setDomainValues(String domainValues) {
@@ -148,13 +165,12 @@ public class CodeConfig {
 	}
 
 	public String getDomainPathTemplate() {
-		return DomainPathTemplate;
+		return domainPathTemplate;
 	}
 
 	public void setDomainPathTemplate(String domainPathTemplate) {
-		DomainPathTemplate = domainPathTemplate;
+		this.domainPathTemplate = domainPathTemplate;
 	}
-
 
     
     
