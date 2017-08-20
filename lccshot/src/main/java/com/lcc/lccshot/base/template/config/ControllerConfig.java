@@ -27,6 +27,9 @@ public class ControllerConfig {
         imports.add("java.util.List");
         imports.add("java.util.Map");
         
+        imports.add("javax.annotation.Resource");
+        imports.add("javax.validation.Valid");
+        
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");

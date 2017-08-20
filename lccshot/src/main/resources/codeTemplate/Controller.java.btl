@@ -50,7 +50,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      	if (ToolUtil.isEmpty(${context.domainName}Id)) {
                throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
            }
-    	${context.domainBigName} ${context.domainName}  = ${context.bizEnName}Repository.findBy${context.domainName}Id(${context.domainName}Id);
+    	${context.domainBigName} ${context.domainName}  = ${context.bizEnName}Repository.findBy${context.domainBigName}Id(${context.domainName}Id);
     	Map<String, Object> map = BeanKit.beanToMap(${context.domainName});
     	model.addAttribute("${context.domainName}", map);
         return PREFIX + "${context.bizEnName}_edit.html";
@@ -75,8 +75,8 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      	if (result.hasErrors()) {
              throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
          }
-    	 ${context.domainName}.setCreatetime(new Date());
-    	 ${context.domainName}.setUpdatetime(new Date());
+    	 ${context.domainName}.setCreateTime(new Date());
+    	 ${context.domainName}.setUpdateTime(new Date());
     	 ${context.bizEnName}Repository.save(${context.domainName});
         return super.SUCCESS_TIP;
     }
@@ -104,9 +104,9 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     	if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-    	${context.domainBigName} old = ${context.bizEnName}Repository.findBy${context.bizEnName}Id(${context.domainName}.get${context.domainBigName}Id());
-    	${context.domainName}.setCreatetime(old.getCreatetime());
-    	${context.domainName}.setUpdatetime(new Date());
+    	${context.domainBigName} old = ${context.bizEnName}Repository.findBy${context.domainBigName}Id(${context.domainName}.get${context.domainBigName}Id());
+    	${context.domainName}.setCreateTime(old.getCreateTime());
+    	${context.domainName}.setUpdateTime(new Date());
     	${context.bizEnName}Repository.save(${context.domainName});
         return super.SUCCESS_TIP;
     }
