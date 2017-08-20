@@ -46,6 +46,7 @@ public class SimpleCoderEngine extends BaseCoderEngine implements CoderFace {
 				 }else{
 					 domain.setLength(prop[3]);
 				 }
+				 domains.add(domain);
 			 }
 		 }
 		 
