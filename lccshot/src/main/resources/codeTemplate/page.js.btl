@@ -16,7 +16,7 @@ ${context.bizEnBigName}.initColumn = function () {
         {field: 'selectItem', radio: true},
         {title: 'id', field: '${context.domainName}id', visible: false, align: 'center', valign: 'middle'}
         <% for(cdomain in domain.cdomains!){ %>
- 		,{title: '${cdomain.columnName}', field: '${cdomain.column}', visible: false, align: 'center', valign: 'middle'}
+ 		,{title: '${cdomain.columnName}', field: '${cdomain.column}', visible: true, align: 'center', valign: 'middle'}
 		<% } %>
     ];
 };
