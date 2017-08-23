@@ -13,6 +13,12 @@
   </parent>
   
    <dependencies>
+   	<dependency>
+    	<groupId>com.lcc</groupId>
+  		<artifactId>lccfang-api</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -20,15 +26,25 @@
       <scope>test</scope>
     </dependency>
 	
-	<dependency>
-  		<groupId>com.alibaba.rocketmq</groupId>
-  		<artifactId>rocketmq-client</artifactId>
-  		</dependency>
-		
-		<dependency>
-		   <groupId>redis.clients</groupId>
-		   <artifactId>jedis</artifactId>
-		</dependency>
+		<!-- dubbo -->  
+        <dependency>  
+            <groupId>com.alibaba</groupId>  
+            <artifactId>dubbo</artifactId>  
+            <exclusions>  
+                <exclusion>  
+                    <groupId>org.springframework</groupId>  
+                    <artifactId>spring</artifactId>  
+                </exclusion>  
+            </exclusions>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.apache.zookeeper</groupId>  
+            <artifactId>zookeeper</artifactId>  
+        </dependency>  
+        <dependency>  
+           <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>  
+        </dependency>  
     
     	<dependency>
 				<groupId>org.springframework.boot</groupId>
