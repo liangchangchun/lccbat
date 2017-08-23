@@ -16,8 +16,8 @@
        <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" />  
       
         <!-- 暴露服务 -->  
-        <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />  
-          
-        <dubbo:service interface="com.chengli.springboot.example.service.ExampleService"  
-            ref="exampleServiceImpl" retries="0" timeout="6000" />  
+        <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" /> 
+        <!-- -->  
+        <dubbo:service retries="0" interface="com.lcc.dubbo.service.BusizssService" ref="busizssServiceImpl"/>  
+            
 </beans>  

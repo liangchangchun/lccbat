@@ -13,12 +13,15 @@
   </parent>
   
    <dependencies>
-   	<dependency>
-    	<groupId>com.lcc</groupId>
+
+   <!--  -->
+   <dependency>
+  	 	 <groupId>com.lcc</groupId>
   		<artifactId>lccfang-api</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
+  </dependency>
   
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -26,26 +29,52 @@
       <scope>test</scope>
     </dependency>
 	
-		<!-- dubbo -->  
+		<!-- dubbo  --> 
         <dependency>  
             <groupId>com.alibaba</groupId>  
             <artifactId>dubbo</artifactId>  
             <exclusions>  
-                <exclusion>  
-                    <groupId>org.springframework</groupId>  
-                    <artifactId>spring</artifactId>  
-                </exclusion>  
+                 <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </exclusion>
+  
             </exclusions>  
         </dependency>  
         <dependency>  
             <groupId>org.apache.zookeeper</groupId>  
             <artifactId>zookeeper</artifactId>  
         </dependency>  
-        <dependency>  
+       <!-- <dependency>  
            <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>  
-        </dependency>  
-    
+        </dependency> --> 
+        
+            <dependency> 
+         <groupId>com.github.sgroschupf</groupId>
+    	<artifactId>zkclient</artifactId>
+    	<version>0.1</version>
+      </dependency>  
+        
+           <!-- Spring Boot Dubbo 依赖  
+        <dependency>
+            <groupId>io.dubbo.springboot</groupId>
+            <artifactId>spring-boot-starter-dubbo</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    -->
     	<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
@@ -81,10 +110,7 @@
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 			</dependency>
-         <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl</artifactId>
-        </dependency>
+    
               <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -97,10 +123,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.penggle</groupId>
-            <artifactId>kaptcha</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
@@ -109,10 +132,7 @@
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-        </dependency>
+      
         
          <!--shiro依赖-->
         <dependency>

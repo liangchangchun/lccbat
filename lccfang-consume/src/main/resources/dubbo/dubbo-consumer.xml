@@ -11,6 +11,7 @@
       
         <!-- 注册中心暴露服务地址 -->  
        <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" />  
+       
+       <dubbo:reference interface="com.lcc.dubbo.service.BusizssService" id="busizssService" check="false" />
           
-  
 </beans>  
