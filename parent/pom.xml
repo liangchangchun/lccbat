@@ -34,6 +34,9 @@
 		 <jackson.version>2.7.5</jackson.version>
 		 <pagehelper.version>4.1.1</pagehelper.version>
 		 <javax.version>7.0</javax.version>
+		 
+		 <rocketmq.version>3.5.8</rocketmq.version>
+		 <jedis.version>2.9.0</jedis.version>
 	</properties>
 
 	<modules>
@@ -42,6 +45,8 @@
 
 <dependencyManagement>
 		<dependencies>
+		
+		
 			<!-- Spring boot Dependency Start -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -222,6 +227,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
+        <dependency>
+  		<groupId>com.alibaba.rocketmq</groupId>
+  		<artifactId>rocketmq-client</artifactId>
+ 		 <version>${rocketmq.version}</version>
+		</dependency>
 			
 			</dependencies>
 		</dependencyManagement>
