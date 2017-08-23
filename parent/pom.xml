@@ -28,7 +28,6 @@
  		
  		<tk.mybatis.version>1.1.0</tk.mybatis.version>
  		<tk.mybatis.mapper.version>3.4.0</tk.mybatis.mapper.version>
-		<log4j.version>1.2.14</log4j.version>
 		 <druid.version>1.0.12</druid.version>
 		 <fastjson_version>1.1.37</fastjson_version>
 		 <jackson.version>2.7.5</jackson.version>
@@ -38,7 +37,7 @@
 		 <rocketmq.version>3.5.8</rocketmq.version>
 		 <jedis.version>2.9.0</jedis.version>
 		 
-		 <dubbo.version>2.5.4-SNAPSHOT</dubbo.version>  
+		 <dubbo.version>2.5.3</dubbo.version>  
         <zookeeper.version>3.4.6</zookeeper.version>  
         <zkclient.version>0.3</zkclient.version>
 	</properties>
