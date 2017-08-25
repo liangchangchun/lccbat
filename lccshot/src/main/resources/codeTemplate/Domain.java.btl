@@ -32,6 +32,8 @@ public class ${context.domainBigName} implements Serializable {
 	/**
      * ${cdomain.columnName}
      */
+   
+    //@Column(length = ${cdomain.length})
 	private ${cdomain.type} ${cdomain.column};
 	
 	public ${cdomain.type} get${cdomain.bigColumn}() {

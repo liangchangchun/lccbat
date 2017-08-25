@@ -4,6 +4,12 @@ package ${warpper.packageName};
 import ${import};
 <% } %>
 
+/**
+ * ${context.domainBigName} 包装类
+ *
+ * @author liangchangchun
+ * @Date ${tool.currentTime()}
+ */
 public class ${context.bizEnBigName}Warpper extends BaseControllerWarpper {
 
 

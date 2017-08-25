@@ -145,6 +145,7 @@ public class SimpleCoderEngine extends BaseCoderEngine implements CoderFace {
 		String path = ToolUtil.format(config.getProjectPath() + config.getDomainPathTemplate(),
                 ToolUtil.firstLetterToUpper(config.getDomainName()));
 		createFile("codeTemplate/Domain.java.btl", path);
+		System.out.println(path);
         System.out.println("生成实体类成功!");
 	}
 
