@@ -18,6 +18,8 @@ public class CodeConfig {
     private String serviceImplPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\service\\impl\\{}ServiceImpl.java";
 	private String repositoryPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\repository\\{}Repository.java";
 	private String domainPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\domain\\{}.java";
+	private String warpperPathTemplate = "\\src\\main\\java\\com\\lcc\\lccshot\\base\\warpper\\{}Warpper.java";
+	
 	
     private String bizChName;   				 //业务名称
     private String bizEnName;   				 //业务英文名称
@@ -170,6 +172,14 @@ public class CodeConfig {
 
 	public void setDomainPathTemplate(String domainPathTemplate) {
 		this.domainPathTemplate = domainPathTemplate;
+	}
+
+	public String getWarpperPathTemplate() {
+		return warpperPathTemplate;
+	}
+
+	public void setWarpperPathTemplate(String warpperPathTemplate) {
+		this.warpperPathTemplate = warpperPathTemplate;
 	}
 
     

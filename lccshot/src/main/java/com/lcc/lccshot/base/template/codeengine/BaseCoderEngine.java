@@ -75,5 +75,6 @@ public abstract class BaseCoderEngine {
 		    	face.createServiceImpl();
 		    	face.createDao();
 		    	face.createDomain();
+		    	face.createWarpper();
 		}
 }

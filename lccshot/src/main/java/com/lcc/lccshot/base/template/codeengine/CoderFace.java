@@ -43,4 +43,8 @@ public interface CoderFace {
       * domain 实体类
       */
      void createDomain();
+     /**
+      * vo 包装类
+      */
+     void createWarpper();
 }

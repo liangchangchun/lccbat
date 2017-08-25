@@ -12,6 +12,7 @@ import com.lcc.lccshot.base.template.config.DomainConfig;
 import com.lcc.lccshot.base.template.config.IServiceConfig;
 import com.lcc.lccshot.base.template.config.RepositoryConfig;
 import com.lcc.lccshot.base.template.config.ServiceImplConfig;
+import com.lcc.lccshot.base.template.config.WarpperConfig;
 import com.lcc.lccshot.base.template.enums.ColumnType;
 import com.lcc.lccshot.utils.ToolUtil;
 
@@ -30,6 +31,8 @@ public class SimpleCoderEngine extends BaseCoderEngine implements CoderFace {
 		 template.binding("iService", new IServiceConfig());
 		 template.binding("serviceImpl", new ServiceImplConfig());
 		 template.binding("repository", new RepositoryConfig());
+		 template.binding("warpper", new WarpperConfig());
+		 
 		 DomainConfig domainConfig = new DomainConfig();
 		 String[] values = config.getDomainValues().split(";");
 		 List<CoderDomain> domains = Lists.newArrayList();
@@ -143,5 +146,14 @@ public class SimpleCoderEngine extends BaseCoderEngine implements CoderFace {
                 ToolUtil.firstLetterToUpper(config.getDomainName()));
 		createFile("codeTemplate/Domain.java.btl", path);
         System.out.println("生成实体类成功!");
+	}
+
+	@Override
+	public void createWarpper() {
+		// "codeTemplate/Warpper.java.btl";
+		String path = ToolUtil.format(config.getProjectPath() + config.getWarpperPathTemplate(),
+                ToolUtil.firstLetterToUpper(config.getBizEnName()));
+		createFile("codeTemplate/Warpper.java.btl", path);
+        System.out.println("生成包装类成功!");
 	}
 }
