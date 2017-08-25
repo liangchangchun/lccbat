@@ -17,6 +17,7 @@ public class Zk {
 		};  
 		final ZooKeeper zookeeper=new ZooKeeper(connectString,sessionTimeout,watcher);  
 			System.out.println("获得连接："+zookeeper);  
+			//zookeeper.setData("/zk1", data, version);
 			final byte[] data=zookeeper.getData("/zk1", watcher, null);  
 			System.out.println("读取的值："+new String(data));  
 			zookeeper.close();  
