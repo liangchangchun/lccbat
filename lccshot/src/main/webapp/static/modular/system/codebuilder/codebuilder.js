@@ -59,7 +59,8 @@ Codebuilder.collectData = function () {
         var num = $(this).find("[name='itemNum']").val();
         var name = $(this).find("[name='itemName']").val();
         var type = $(this).find("[name='itemType']").val();
-        var length = $(this).find("[name='itemLength']").val()+'';
+        var length = $(this).find("[name='itemLength']").val();
+        if(length){}else{length = 0;}
         mutiString = mutiString + (num + ":" + name + ":" + type + ":" + length + ";");
     });
     this.domainName = $("#domainName").val();
