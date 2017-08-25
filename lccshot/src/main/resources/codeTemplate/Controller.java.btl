@@ -63,7 +63,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     @ResponseBody
     public Object list(String condition) {
     	List<${context.domainBigName}> list = this.${context.bizEnName}Service.list(condition);
-        return list;
+        return super.warpObject(new ${context.domainBigName}Warpper(list,${context.domainBigName}.class));
     }
 
     /**

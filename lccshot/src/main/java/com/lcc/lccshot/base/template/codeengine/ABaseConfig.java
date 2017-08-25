@@ -7,7 +7,7 @@ public abstract class ABaseConfig {
     private List<String> imports;//所引入的包
     
     public ABaseConfig(){
-	 
+    	init();
     }
     
    public abstract void init();
