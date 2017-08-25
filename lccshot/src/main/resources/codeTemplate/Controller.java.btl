@@ -7,6 +7,7 @@ import ${import};
 import ${context.basePackage}.domain.${context.domainBigName};
 import ${context.basePackage}.repository.${context.domainBigName}Repository;
 import ${context.basePackage}.service.I${context.domainBigName}Service;
+import ${context.basePackage}.base.warpper.${context.domainBigName}Warpper;
 
 /**
  * ${context.bizChName}控制器
