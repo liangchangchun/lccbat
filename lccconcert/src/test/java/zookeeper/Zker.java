@@ -8,7 +8,7 @@ import org.apache.zookeeper.ZooKeeper;
 
 public class Zker {
 	
-	private static String connectString="10.0.1.88:2181";  
+	private static String connectString="127.0.0.1:2181";  
 	private static int sessionTimeout=999999;  
 	
 	public static void main(String[] args) throws Exception{  
