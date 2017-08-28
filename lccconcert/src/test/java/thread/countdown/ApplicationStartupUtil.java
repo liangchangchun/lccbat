@@ -29,14 +29,13 @@ public class ApplicationStartupUtil
     {
         //Initialize the latch with number of service checkers
        
- 
+    	  _latch = new CountDownLatch(3);
         //All add checker in lists
         _services = new ArrayList<BaseHealthChecker>();
         _services.add(new NetworkHealthChecker(_latch));
         _services.add(new CacheHealthChecker(_latch));
         _services.add(new DatabaseHealthChecker(_latch));
- 
-        _latch = new CountDownLatch(_services.size());
+      
         //Start service checkers using executor framework
         Executor executor = Executors.newFixedThreadPool(_services.size());
  
