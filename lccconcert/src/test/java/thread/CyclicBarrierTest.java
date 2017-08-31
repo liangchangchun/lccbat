@@ -14,9 +14,9 @@ public class CyclicBarrierTest {
 	        CyclicBarrier barrier = new CyclicBarrier(3);  
 	  
 	        ExecutorService executor = Executors.newFixedThreadPool(3);  
-	        executor.submit(new Thread(new Runner(barrier, "1号选手")));  
-	        executor.submit(new Thread(new Runner(barrier, "2号选手")));  
-	        executor.submit(new Thread(new Runner(barrier, "3号选手")));  
+	        executor.submit(new Runner(barrier, "1号选手"));  
+	        executor.submit(new Runner(barrier, "2号选手"));  
+	        executor.submit(new Runner(barrier, "3号选手"));  
 	  
 	        executor.shutdown();  
 	    }  
