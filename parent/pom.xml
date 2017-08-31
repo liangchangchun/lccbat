@@ -39,7 +39,7 @@
 		 <rocketmq.version>3.5.8</rocketmq.version>
 		 <jedis.version>2.9.0</jedis.version>
 		 
-		 <dubbo.version>2.5.3</dubbo.version>  
+		 <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
         <zookeeper.version>3.4.6</zookeeper.version>  
         <zkclient.version>0.3</zkclient.version>
 	</properties>
@@ -70,28 +70,12 @@
         </dependency>
         
        
-         <!-- dubbo -->  
-        <dependency>  
-            <groupId>com.alibaba</groupId>  
-            <artifactId>dubbo</artifactId>  
-            <exclusions>  
-                <exclusion>  
-                    <groupId>org.springframework</groupId>  
-                    <artifactId>spring</artifactId>  
-                </exclusion>  
-            </exclusions>  
-            <version>${dubbo.version}</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>org.apache.zookeeper</groupId>  
-            <artifactId>zookeeper</artifactId>  
-            <version>${zookeeper.version}</version>  
-        </dependency>  
+             <!-- Spring Boot Dubbo 依赖 -->
         <dependency>
-			<groupId>com.101tec</groupId>
-			<artifactId>zkclient</artifactId>
-			<version>${zkclient.version}</version>
-		</dependency>
+            <groupId>io.dubbo.springboot</groupId>
+            <artifactId>spring-boot-starter-dubbo</artifactId>
+            <version>${dubbo-spring-boot}</version>
+        </dependency>
 			
 			<dependency>  
 		<!-- Import  dependency  management  from    Spring  Boot    -->  
