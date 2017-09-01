@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 /**
@@ -14,7 +15,6 @@ public class OioServer {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
-
 		ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
 		//创建socket服务,监听10101端口
 		ServerSocket server=new ServerSocket(10101);
