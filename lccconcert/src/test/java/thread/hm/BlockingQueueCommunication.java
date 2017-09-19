@@ -10,16 +10,17 @@ public class BlockingQueueCommunication {
 	    Thread t = new Thread(new Runnable() {
 			
 			public void run() {
-				for (int i=0;i<10;i++) {
+				for (int i=0;i<10000;i++) {
 					controller.state1(i);
 				}
 			}
 		});
 	    t.start();
 	    
-	    for (int i=0;i<10;i++) {
+	    for (int i=0;i<10000;i++) {
 	    	controller.state2(i);
 		}
+	    System.gc();
 	}
 
 	static class RunController{
@@ -58,7 +59,7 @@ public class BlockingQueueCommunication {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			for (int j=0;j < 20;j++){
+			for (int j=0;j < 100;j++){
 				System.out.println("线程2 sequece of " + j + ",loop of " + i);
 			}
 			
