@@ -13,6 +13,8 @@ import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
+
+import netty.c.Student;
 /**
  * netty客户端入门
  * @author -琴兽-
@@ -45,15 +47,20 @@ public class Client {
 		});
 		
 		//连接服务端
-		ChannelFuture connect = bootstrap.connect(new InetSocketAddress("127.0.0.1", 10101));
+		ChannelFuture connect = bootstrap.connect(new InetSocketAddress("127.0.0.1", 10111));
 		Channel channel = connect.getChannel();
 		
 		System.out.println("client start");
 		
 		Scanner scanner = new Scanner(System.in);
+		//Student s = new Student();
+		String s = "";
 		while(true){
 			System.out.println("请输入");
-			channel.write(scanner.next());
+			s = scanner.next();
+			//s.setName(scanner.next());
+			//s.setAge("20");
+			channel.write(s);
 		}
 	}
 

@@ -5,6 +5,8 @@ import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
+
+import netty.c.Student;
 /**
  * 消息接受处理类
  * @author -琴兽-
@@ -21,9 +23,10 @@ public class HelloHandler extends SimpleChannelHandler {
 		
 		String s = (String) e.getMessage();
 		System.out.println(s);
-		
+		//Student s = (Student)e.getMessage();
+		//System.out.println("你好:"+s.getName());
 		//回写数据
-		ctx.getChannel().write("hi");
+		ctx.getChannel().write("已接收");
 		super.messageReceived(ctx, e);
 	}
 

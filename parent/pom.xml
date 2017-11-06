@@ -36,7 +36,7 @@
 		 <commons-lang.version>3.5</commons-lang.version>
 		 <gson.version>2.7</gson.version>
 		 
-		 <rocketmq.version>3.5.8</rocketmq.version>
+		  <rocketmq.version>3.5.8</rocketmq.version> 
 		 <jedis.version>2.9.0</jedis.version>
 		 
 		 <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
@@ -241,12 +241,14 @@
             </exclusions>
         </dependency>
         
+        
         <dependency>
-  		<groupId>com.alibaba.rocketmq</groupId>
-  		<artifactId>rocketmq-client</artifactId>
- 		 <version>${rocketmq.version}</version>
+  			<groupId>com.alibaba.rocketmq</groupId>
+  			<artifactId>rocketmq-client</artifactId>
+ 			 <version>${rocketmq.version}</version>
 		</dependency>
-		
+		 
+		 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
