@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ParticipleController {
-    private static final Logger logger= LoggerFactory.getLogger("LOGGER.Participle");
+    private static final Logger logger= LoggerFactory.getLogger("LOGGER.PARTICIPLE");
     
 	//public static final String dic_path = System.getProperty("user.dir") + "/learnbuycar.dic";
     public static final String dic_path = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/learnbuycar.dic";

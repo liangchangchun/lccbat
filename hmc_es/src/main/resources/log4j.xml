@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+    <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!--#log4j中有5级logger ,#FATAL 0 ,#ERROR 3 ,#WARN 4 ,#INFO 6 ,#DEBUG 7 -->
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+		<!-- 控制台 -->
+      <appender name="APPENDER.STDOUT" class="org.apache.log4j.ConsoleAppender">  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"    
+                value="%d %-5p [%t] %l - %m%n" /> 
+        </layout>  
+    </appender> 
+   
+	
+	<appender name="APPENDER.PARTICIPLE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/var/logs/service/ware/ware.log" />
+		<param name="DatePattern" value="'_'yyyy-MM-dd'.log'" /> 
+		 <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"    
+                value="%d %-5p [%t] %l - %m%n" /> 
+        </layout>  
+	</appender>
+	
+	<appender name="APPENDER.PARTICIPLE_JOB" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/var/logs/service/ware/job/ware_job.log" />
+		<param name="DatePattern" value="'_'yyyy-MM-dd'.log'" /> 
+		 <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"    
+                value="%d %-5p [%t] %l - %m%n" /> 
+        </layout>  
+	</appender>
+	<!-- error 日志剥离 -->
+	<appender name="APPENDER.PARTICIPLE_ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+    	<param name="Threshold" value="error"></param>  
+		<param name="File" value="/var/logs/service/ware/ware_error.log" />
+		<param name="DatePattern" value="'_'yyyy-MM-dd'.log'" /> 
+		<layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"    
+                value="%d %-5p [%t] %l - %m%n" /> 
+        </layout>  
+	</appender>
+   <!-- hmc facade log -->
+    <logger name="LOGGER.PARTICIPLE" additivity="false">  
+        <appender-ref ref="APPENDER.PARTICIPLE"/>  
+    </logger>  
+     
+	  <!-- 根logger的设置 --> 
+    <root>  
+        <priority value ="info"/>  
+        <appender-ref ref="APPENDER.STDOUT" />
+        <appender-ref ref="APPENDER.PARTICIPLE" />
+        <appender-ref ref="APPENDER.PARTICIPLE_ERROR" />
+    </root> 
+</log4j:configuration>  
