@@ -1,0 +1,29 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>用户搜索自然语句</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="info" name="语句查询" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Search.search()"/>
+                                <#button name="导出excel" icon="fa-plus" clickFun="Search.exportExcel()"/>
+                            </div>
+                        </div>
+                        <#table id="searchTable"/>  
+                        <a href="#" id="adownloadExcel" style="visibility: hidden;">download</a>       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/usersearch/usersearch.js"></script>
+@}

@@ -8,7 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class Application extends WebMvcConfigurerAdapter{
+public class Application {
     protected final static Logger logger = LoggerFactory.getLogger(Application.class);
     
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

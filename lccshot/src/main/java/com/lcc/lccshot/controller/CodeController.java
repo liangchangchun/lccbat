@@ -65,7 +65,7 @@ public class CodeController extends BaseController {
         GunsTemplateEngine gunsTemplateEngine = new SimpleTemplateEngine();
         gunsTemplateEngine.setContextConfig(contextConfig);
         gunsTemplateEngine.start();
-
+        
         return super.SUCCESS_TIP;
     }
 }

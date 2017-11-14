@@ -49,7 +49,7 @@ public class PageFactory {
          String order = request.getParameter("order");
          Pageable pageable = null;
          if(ToolUtil.isEmpty(sort)){
-        	 pageable =new PageRequest((offset / limit + 1), limit);
+        	 pageable =new PageRequest((offset / limit ), limit);
          }else{
         	 Sort st = null;
         	 if(Order.ASC.getDes().equals(order)){
@@ -57,7 +57,7 @@ public class PageFactory {
              }else{
             	 st = new Sort(Direction.DESC, sort);
              }
-        	 int page = (offset / limit + 1) ;
+        	 int page = (offset / limit ) ;
         	 pageable = new PageRequest(page, limit, st);
          }
      	return pageable;

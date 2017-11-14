@@ -2,6 +2,7 @@ package com.es.hmc.controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,28 +22,45 @@ import org.springframework.web.bind.annotation.RestController;
 public class ParticipleController {
     private static final Logger logger= LoggerFactory.getLogger("LOGGER.PARTICIPLE");
     
-	//public static final String dic_path = System.getProperty("user.dir") + "/learnbuycar.dic";
-    public static final String dic_path = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/learnbuycar.dic";
+	public static final String dic_path_dic = "/data/app/els-file-static/learnbuycar.dic";
+	public static final String dic_path_dic_tp = "/data/app/els-file-static/learnbuycar.dic.tp";
+    public static final String dic_path = "/data/app/els-file-static/learnbuycarbase.dic";
 	
     @RequestMapping(value = "/es/participle", method = RequestMethod.GET)
-    public Object searchCity(String sContent) {
+    public Object searchCity(String sContent)  {
     	//String path =   ClassUtils.getDefaultClassLoader().getResource("").getPath();
     	//System.out.println(path);
     	if (sContent!=null && !sContent.equals("")) {
-    		addWord(sContent);
+    		logger.info("dic_path_dic:"+dic_path_dic);
+    		logger.info("dic_path_dic_tp:"+dic_path_dic_tp);
+    		logger.info("dic_path:"+dic_path);
+    		try {
+				addWord(sContent);
+			} catch (IOException e) {
+				logger.error("文件不存在异常"+e.getMessage());
+			}
     	}
         return sContent;
     }
     
-    private void addWord(String sContent){
+    private void addWord(String sContent) throws IOException{
     	//String filepath = System.getProperty("user.dir");
     	//System.out.println(filepath);
+    	File f = new File(dic_path);
+    	File  f1= new File(dic_path_dic_tp);
+    	if (!f1.exists()) {
+    		f1.createNewFile();
+    	}
+    	File  f2= new File(dic_path_dic);
+    	if (!f2.exists()) {
+    		f2.createNewFile();
+    	}
     	BufferedReader br = null;
     	BufferedWriter bw = null;
     	boolean has = true;
 		try {
-    	br = new BufferedReader(new InputStreamReader(new FileInputStream(dic_path)));
-    	bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(dic_path+".tp")));
+    	br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+    	bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f2)));
     	String line="";
     	
 		while((line= br.readLine())!=null){
@@ -76,10 +94,11 @@ public class ParticipleController {
 		}
 		
 		if (has) {
-			copyFile(dic_path+".tp",dic_path);
-			logger.info("写入新词:【"+sContent+"】成功!词库路径:"+dic_path);
+			copyFile(dic_path_dic,dic_path);
+			//copyFile(dic_path_dic_tp,dic_path);
+			logger.info("写入新词:【"+sContent+"】成功!词库路径:"+dic_path_dic);
 		} else {
-			logger.info("【"+sContent+"】词库已存在该词.词库路径:"+dic_path);
+			logger.info("【"+sContent+"】词库已存在该词.词库路径:"+dic_path_dic);
 		}
 		
     }
